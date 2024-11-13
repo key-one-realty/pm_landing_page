@@ -47,6 +47,8 @@ const PopupForm = () => {
       const mutationReq = await createContact(payload);
 
       sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
+
+      return mutationReq;
     },
   });
 
