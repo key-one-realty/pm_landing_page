@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -17,48 +17,45 @@
   font-style: normal;
 }
 
-
-
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar-container{
+.navbar-container {
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.30);
+  background: rgba(255, 255, 255, 0.3);
 }
 
-.navbar-container .active{
+.navbar-container .active {
   border-radius: 15px;
-  background: #FFF;
+  background: #fff;
   padding: 14px 0px;
   min-width: 139px;
   color: black;
 }
 
-.header-container{
+.header-container {
   background: url("/header_bg.png") no-repeat 80% center;
   background-position-y: 1%;
   background-size: cover;
   background-color: #010100;
 }
 
-.popup-form-container{
+.popup-form-container {
   z-index: 1000;
   background: url("/header_bg.png") no-repeat 80% center;
   background-position-y: 1%;
   background-size: cover;
 }
 
-
-.mockup-container{
+.mockup-container {
   background: linear-gradient(132deg, #101010 15.8%, #000 86.6%);
   border-radius: 20px;
 }
 
-.choose-card{
+.choose-card {
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
   text-align: center;
   font-size: 18px;
@@ -68,22 +65,24 @@ body {
   gap: 14px;
 }
 
-.choose-card:nth-child(1), .choose-card:nth-child(4){
-  background: #FFF;
+.choose-card:nth-child(1),
+.choose-card:nth-child(4) {
+  background: #fff;
 }
-.choose-card:nth-child(2), .choose-card:nth-child(3){
+.choose-card:nth-child(2),
+.choose-card:nth-child(3) {
   background: #101010;
   color: white;
 }
 
-.testimonial-header-container{
+.testimonial-header-container {
   background: url("/testimonial_bg.png") center center no-repeat;
   background-size: cover;
 }
 
-.testimonial-card-container{
+.testimonial-card-container {
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -93,7 +92,7 @@ body {
   display: flex;
 }
 
-.blur-overlay{
+.blur-overlay {
   filter: blur(12.5px);
   /* opacity: 0.25; */
   z-index: -10;
@@ -103,87 +102,90 @@ body {
 }
 
 .show-mobile-nav {
-  animation: show-mobile-nav 0.150s ease-in-out forwards;
+  animation: show-mobile-nav 0.15s ease-in-out forwards;
   transition: 0.15ms all ease-in-out;
 }
 
 @keyframes show-popup-form {
-  0%{
+  0% {
     display: flex;
     transform: translateX(-2000px);
-
   }
-  100%{
+  100% {
     display: flex;
     transform: translateX(0px);
   }
 }
 
 @keyframes show-mobile-nav {
-  0%{
+  0% {
     transform: translateY(-1000px);
     height: 0px;
   }
-  100%{
+  100% {
     transform: translateY(0px);
     height: fit-content;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  .overlay{
-    background: linear-gradient(180deg, #010100f7 4.15%, rgba(1, 1, 0, 0.00) 60.86%);
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      #010100b4 4.15%,
+      rgba(1, 1, 0, 0) 20.86%
+    );
   }
 
-  .header-container{
+  .header-container {
     background-size: unset;
   }
 
-  .mobile-only{
+  .mobile-only {
     display: block;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .main-content{
+  .main-content {
     height: calc(100vh - 200px);
   }
 }
 
-@layer components{
-  .flex-center{
+@layer components {
+  .flex-center {
     @apply flex justify-center items-center;
   }
 
-  .flex-between{
+  .flex-between {
     @apply flex justify-between items-center;
   }
 
-  .flex-col-start-between{
+  .flex-col-start-between {
     @apply flex flex-col justify-between items-start;
   }
 
-  .flex-start{
+  .flex-start {
     @apply flex justify-start items-start;
   }
 
-  .flex-evenly{
+  .flex-evenly {
     @apply flex justify-evenly items-center;
   }
 
-  .flex-start-col{
+  .flex-start-col {
     @apply flex flex-col justify-start items-start;
   }
 
-  .flex-center-col{
+  .flex-center-col {
     @apply flex flex-col justify-center items-center;
   }
 
-  .navbar-float{
+  .navbar-float {
     @apply fixed top-0 left-0 bg-secondary-black py-8;
   }
 
-  .form-input{
+  .form-input {
     @apply outline-none border-none w-full bg-transparent text-form-input-text font-semibold font-poppins;
   }
 }

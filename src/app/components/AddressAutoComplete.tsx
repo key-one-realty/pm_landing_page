@@ -15,6 +15,7 @@ type AddressAutoCompleteProps = {
   setValue?: UseFormSetValue<any>;
   placeholder: string;
   inputType: string;
+  value: any;
   fieldOptions?: RegisterOptions<any, string> | undefined;
 };
 
@@ -24,6 +25,7 @@ const AddressAutoComplete = ({
   name,
   placeholder,
   inputType,
+  value,
   fieldOptions,
 }: AddressAutoCompleteProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -36,7 +38,7 @@ const AddressAutoComplete = ({
   const debouncedAddressInput = useDebounceValue(userInput, 500);
 
   const handlePredictAddress = async () => {
-    if (debouncedAddressInput) {
+    if (debouncedAddressInput && debouncedAddressInput != value) {
       const placePredictions = await autocomplete(debouncedAddressInput);
 
       setPlaces(placePredictions);

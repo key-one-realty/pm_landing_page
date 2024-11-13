@@ -73,7 +73,7 @@ const HomeSection = () => {
             </div>
           </div>
           <div className="form-container flex-center w-full lg:w-6/12 2xl:w-5/12 h-full">
-            <div className="w-11/12 lg:w-full flex-between justify-evenly flex-col h-full lg:gap-9 2xl:gap-0">
+            <div className="w-11/12 lg:w-full flex-between justify-evenly flex-col h-full gap-4 lg:gap-9 2xl:gap-0">
               <div className="form-header text-white flex-center flex-col gap-6">
                 <h1 className="text-4xl lg:text-6xl font-black font-montserrat">
                   Unlock Your Property&apos;s Full Income Potential
