@@ -10,6 +10,7 @@ import { ContactInsertRequest, PopupFormInputs } from "../utils/types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useApiStore } from "../store/apiStore";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const PopupForm = () => {
   const popupFormRef = useRef<HTMLDivElement | null>(null);
@@ -45,7 +46,7 @@ const PopupForm = () => {
     mutationFn: async (payload: ContactInsertRequest) => {
       const mutationReq = await createContact(payload);
 
-      console.log(mutationReq);
+      sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
     },
   });
 

@@ -7,6 +7,7 @@ import { ContactInsertRequest } from "../utils/types";
 import { calculatedFormPayload, RoomType } from "../utils/enums";
 import { useMutation } from "@tanstack/react-query";
 import { useApiStore } from "../store/apiStore";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 type BottomFormValues = {
   name: string;
@@ -40,6 +41,8 @@ const BottomForm = () => {
     mutationKey: ["bottom-contact-form", formValues.email],
     mutationFn: async (payload: ContactInsertRequest) => {
       const bottomContactReq = await createContact(payload);
+
+      sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
 
       return bottomContactReq;
     },
