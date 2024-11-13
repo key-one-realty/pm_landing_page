@@ -59,7 +59,7 @@ const BottomFormInput = ({
           />
         );
     }
-  }, []);
+  }, [fieldOptions, inputType, name, placeholder, register]);
 
   return (
     <div className="w-full py-4 border-b border-b-white">

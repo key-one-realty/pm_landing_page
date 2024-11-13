@@ -92,7 +92,7 @@ export function useDebounceValue(input: string, delay: number) {
     return () => {
       clearTimeout(timeout);
     };
-  }, [input]);
+  }, [input, delay]);
 
   return debounceValue;
 }

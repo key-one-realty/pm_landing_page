@@ -1,4 +1,3 @@
-import { ContactInsertRequest } from "./types";
 
 export enum ReviewSource {
     GOOGLE = "google",

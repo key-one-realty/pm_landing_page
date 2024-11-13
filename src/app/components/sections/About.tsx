@@ -44,7 +44,7 @@ const AboutSection = () => {
                 ideal homes — places where memories will be made, and futures
                 will be built. With an extensive portfolio of properties, from
                 luxurious urban apartments to serene beachfront villas, we
-                ensure that every client's unique needs are met.
+                ensure that every client&apos;s unique needs are met.
               </p>
             </div>
             <div className="flex flex-col justify-start items-start gap-2">

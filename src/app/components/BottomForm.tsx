@@ -80,6 +80,9 @@ const BottomForm = () => {
 
   return (
     <div className="w-full lg:w-8/12 flex-center-col pt-10 lg:pt-0 pb-24 lg:pb-0 h-full lg:h-[450px] 2xl:h-[546px]">
+      {showStatus && isError && (
+        <span className="text-red-500 text-center">{error.message}</span>
+      )}
       {showStatus && isSuccess && (
         <span className="text-green-300 text-center">
           Thank you for contacting us! Someone from the team should reach out to

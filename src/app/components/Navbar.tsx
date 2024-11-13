@@ -40,7 +40,13 @@ const Navbar = () => {
         console.log("Section is undefined");
       }
     },
-    [aboutSection, serviceSection, contactSection, homeSection]
+    [
+      aboutSection,
+      serviceSection,
+      contactSection,
+      homeSection,
+      // setSectionInView,
+    ]
   );
 
   const handleOpenNav = () => {

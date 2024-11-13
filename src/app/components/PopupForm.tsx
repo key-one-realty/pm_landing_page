@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ImageContainer from "./shared/ImageContainer";
 import FormInput from "./shared/FormInput";
 import CustomButton from "./shared/CustomButton";
@@ -8,7 +8,7 @@ import { useComponentStoreRef } from "../utils/customHooks";
 import { calculatedFormPayload, PageSections, RoomType } from "../utils/enums";
 import { ContactInsertRequest, PopupFormInputs } from "../utils/types";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useApiStore } from "../store/apiStore";
 
 const PopupForm = () => {
@@ -18,6 +18,8 @@ const PopupForm = () => {
   const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
 
   useComponentStoreRef(popupFormRef, PageSections.POPUPFORM);
+
+  const [showStatus, setShowStatus] = useState(false);
 
   const {
     register,
@@ -38,7 +40,7 @@ const PopupForm = () => {
 
   const createContact = useApiStore((state) => state.createContact);
 
-  const { data, isPending, isSuccess, mutateAsync } = useMutation({
+  const { isPending, isSuccess, isError, error, mutateAsync } = useMutation({
     mutationKey: ["popup-form"],
     mutationFn: async (payload: ContactInsertRequest) => {
       const mutationReq = await createContact(payload);
@@ -63,8 +65,22 @@ const PopupForm = () => {
     };
 
     await mutateAsync(payload);
-    setShowPopupForm(false);
+    setShowStatus(true);
   };
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (showStatus) {
+      timeout = setTimeout(() => {
+        setShowStatus(false);
+        setShowPopupForm(false);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [showStatus]);
 
   return (
     <div
@@ -91,7 +107,7 @@ const PopupForm = () => {
           </div>
           <div className="header-content flex-center-col text-center w-11/12 lg:w-6/12 gap-7">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              Unlock Your Property's True Potential
+              Unlock Your Property&apos;s True Potential
             </h2>
             <p className="text-xl font-medium text-center">
               Experience Elite Management with Key One{" "}
@@ -101,6 +117,15 @@ const PopupForm = () => {
             </p>
           </div>
         </div>
+        {showStatus && isError && (
+          <span className="text-red-500 py-4 text-center">{error.message}</span>
+        )}
+        {showStatus && isSuccess && (
+          <span className="text-green-500 py-4 text-center">
+            Thank you for contacting us! Someone from the team should reach out
+            to you soon
+          </span>
+        )}
         <form
           className="h-full w-full lg:w-5/12 flex-center-col gap-[6.87px]"
           onSubmit={handleSubmit(handlePopupFormRequest)}

@@ -6,7 +6,7 @@ interface useApiStoreState {
     createContact: (data: ContactInsertRequest) => void
 }
 
-export const useApiStore = create<useApiStoreState>()((set) => ({
+export const useApiStore = create<useApiStoreState>()(() => ({
 
     createContact: async (data: ContactInsertRequest) => {
         try {

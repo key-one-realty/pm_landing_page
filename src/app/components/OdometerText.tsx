@@ -42,7 +42,7 @@ const OdometerText = ({
     });
 
     if (valueDenominator) {
-      const controls = animate(0, parseInt(valueDenominator), {
+      animate(0, parseInt(valueDenominator), {
         duration: animationDuration,
         ease: "easeOut",
         onUpdate(value) {

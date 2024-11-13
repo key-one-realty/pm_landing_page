@@ -85,7 +85,6 @@ const FormInput = ({
             placeholder={placeholder}
             register={register}
             setValue={setValue}
-            value={value}
             fieldOptions={fieldOptions}
           />
         );

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormInput from "./FormInput";
 import ImageContainer from "./ImageContainer";
 import CustomButton from "./CustomButton";
@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { ContactInsertRequest, HeaderFormInputs } from "@/app/utils/types";
 import { calculatedFormPayload } from "@/app/utils/enums";
 import { useApiStore } from "@/app/store/apiStore";
+import { useMutation } from "@tanstack/react-query";
 
 type RoomType =
   | "studio"
@@ -41,9 +42,20 @@ const HeaderForm = () => {
     },
   });
 
-  const createContact = useApiStore((state) => state.createContact);
+  const [showStatus, setShowStatus] = useState(false);
 
   const formValues = watch();
+
+  const { isPending, isError, isSuccess, error, mutateAsync } = useMutation({
+    mutationKey: ["calculator-form", formValues.email],
+    mutationFn: async (payload: ContactInsertRequest) => {
+      const propertyCalculatorReq = await createContact(payload);
+
+      return propertyCalculatorReq;
+    },
+  });
+
+  const createContact = useApiStore((state) => state.createContact);
 
   const handleRentCalculation = () => {
     const earnings: earningsType = {
@@ -113,11 +125,29 @@ const HeaderForm = () => {
 
     console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
 
-    const createContactReq = await createContact(payload);
+    await mutateAsync(payload);
+    setShowStatus(true);
   };
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (showStatus) {
+      timeout = setTimeout(() => {
+        setShowStatus(false);
+        setShowPopupForm(false);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [showStatus]);
 
   return (
     <div className="form flex-center flex-col gap-8 pb-16 lg:pb-0 w-full h-full">
+      {showStatus && isError && (
+        <span className="text-red-500 py-4 text-center">{error.message}</span>
+      )}
       <form
         className="flex-center gap-3 flex-col w-full"
         onSubmit={handleSubmit(handleCalculateEstimate)}
@@ -162,36 +192,38 @@ const HeaderForm = () => {
           />
         </div>
 
-        {formValues.number_of_rooms != "Enter Number of Rooms" &&
-          formValues.location != "" &&
-          formValues.email && (
-            <div className="valuation flex-between w-full text-white">
-              <div className="property-requested w-5/12 flex-col-start-between gap-1">
-                <h2 className="text-xl w-[90%] font-bold font-montserrat">
-                  {formValues.number_of_rooms} in {formValues.location}
-                </h2>
-                <p className="text-[10px] font-medium">estimated earnings</p>
-              </div>
-              <div>
-                <ImageContainer
-                  src={"/icons/chevron_left.svg"}
-                  alt="chevron left"
-                  w={16.093}
-                  h={16.093}
-                />
-              </div>
-              <div className="property-requested w-5/12 flex-col-start-between items-end gap-1">
-                <h2 className="text-3xl font-bold font-montserrat">
-                  ${handleRentCalculation()}
-                </h2>
-                <p className="text-[10px] font-medium">monthly</p>
-              </div>
+        {isSuccess && (
+          <div className="valuation flex-between w-full text-white">
+            <div className="property-requested w-5/12 flex-col-start-between gap-1">
+              <h2 className="text-xl w-[90%] font-bold font-montserrat">
+                {formValues.number_of_rooms} in {formValues.location}
+              </h2>
+              <p className="text-[10px] font-medium">estimated earnings</p>
             </div>
-          )}
-        <CustomButton
-          btnName="Calculate"
-          // onClick={() => setShowPopupForm(true)}
-        />
+            <div>
+              <ImageContainer
+                src={"/icons/chevron_left.svg"}
+                alt="chevron left"
+                w={16.093}
+                h={16.093}
+              />
+            </div>
+            <div className="property-requested w-5/12 flex-col-start-between items-end gap-1">
+              <h2 className="text-3xl font-bold font-montserrat">
+                ${handleRentCalculation()}
+              </h2>
+              <p className="text-[10px] font-medium">monthly</p>
+            </div>
+          </div>
+        )}
+        {isSuccess ? (
+          <CustomButton
+            btnName="Add a Listing"
+            onClick={() => setShowPopupForm(true)}
+          />
+        ) : (
+          <CustomButton btnName="Calculate" isPending={isPending} />
+        )}
       </form>
     </div>
   );

@@ -76,14 +76,15 @@ const HomeSection = () => {
             <div className="w-11/12 lg:w-full flex-between justify-evenly flex-col h-full lg:gap-9 2xl:gap-0">
               <div className="form-header text-white flex-center flex-col gap-6">
                 <h1 className="text-4xl lg:text-6xl font-black font-montserrat">
-                  Unlock Your Property's Full Income Potential
+                  Unlock Your Property&apos;s Full Income Potential
                 </h1>
                 <p className="font-medium">
                   Experience top-tier property management in premium locations
                   with the{" "}
                   <span className="font-bold">Best Letting Agency Arabia</span>{" "}
                   — awarded by the International Property Awards 2024. Your
-                  journey to maximizing your property's potential starts here.
+                  journey to maximizing your property&apos;s potential starts
+                  here.
                 </p>
               </div>
               <HeaderForm />
