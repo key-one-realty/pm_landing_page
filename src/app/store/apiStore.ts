@@ -1,13 +1,20 @@
 import { create } from "zustand";
 import { makeRequest } from "../utils/Axios";
 import { ContactInsertRequest } from "../utils/types";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
+
 
 interface useApiStoreState {
-    createContact: (data: ContactInsertRequest) => void
+    createContact: (data: ContactInsertRequest) => Promise<any>
 }
 
-export const useApiStore = create<useApiStoreState>()(() => ({
+// const myMiddlewares = (f: useApiStoreState) => devtools(persist(f, { name: 'bearStore' }))
 
+
+export const useApiStore = create<useApiStoreState>()( 
+    devtools(
+        persist(
+                () => ({
     createContact: async (data: ContactInsertRequest) => {
         try {
             const formBody = new URLSearchParams(Object.entries(data).reduce((acc, [key, value]) => {
@@ -24,5 +31,8 @@ export const useApiStore = create<useApiStoreState>()(() => ({
             console.log(`Error submitting Contact: ${error}`);
             return false
         }
-    }
-}))
+    }}),
+     {
+    name: 'keyone_pm_api_store', // name of the item in the storage (must be unique)
+    storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+  })))

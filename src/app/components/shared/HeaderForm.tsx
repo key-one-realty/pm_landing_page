@@ -28,6 +28,8 @@ type earningsType = {
 const HeaderForm = () => {
   const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
 
+  let timeout: NodeJS.Timeout;
+
   const {
     register,
     handleSubmit,
@@ -96,6 +98,12 @@ const HeaderForm = () => {
     }
   };
 
+  const handleOpenPopupForm = () => {
+    clearTimeout(timeout);
+
+    setShowPopupForm(true);
+  };
+
   const handleCalculateEstimate = async (data: HeaderFormInputs) => {
     const bedroom = String(
       calculatedFormPayload.bedroom[
@@ -130,7 +138,6 @@ const HeaderForm = () => {
   };
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
     if (showStatus) {
       timeout = setTimeout(() => {
         setShowStatus(false);
@@ -216,15 +223,13 @@ const HeaderForm = () => {
             </div>
           </div>
         )}
-        {isSuccess ? (
-          <CustomButton
-            btnName="Add a Listing"
-            onClick={() => setShowPopupForm(true)}
-          />
-        ) : (
+        {!isSuccess && (
           <CustomButton btnName="Calculate" isPending={isPending} />
         )}
       </form>
+      {isSuccess && (
+        <CustomButton btnName="Add a Listing" onClick={handleOpenPopupForm} />
+      )}
     </div>
   );
 };
