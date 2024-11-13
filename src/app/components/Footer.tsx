@@ -18,10 +18,6 @@ const Footer = () => {
     useCallback((state) => state.homeSection, [])
   );
 
-  const sectionInView = useComponentStore(
-    useCallback((state) => state.sectionInView, [])
-  );
-
   const setSectionInView = useComponentStore(
     useCallback((state) => state.setSectionInView, [])
   );
