@@ -172,7 +172,7 @@ const Navbar = () => {
         <div
           className={`w-10/12 flex-between ${
             isScrolling
-              ? "bg-black py-10 px-16 fixed top-0 left-0 w-full flex justify-around transition-all"
+              ? "bg-black py-4 px-16 fixed top-0 left-0 w-full flex justify-around transition-all"
               : ""
           }`}
         >

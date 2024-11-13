@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import { ReviewSource } from "../utils/enums";
 import TestimonialCard, { TestimonialCardProps } from "./TestimonialCard";
 import CustomButton from "./shared/CustomButton";
+import { useComponentStore } from "../store/componentStore";
 
 const TestimonialSection = () => {
   const reviews: TestimonialCardProps[] = [
@@ -32,6 +34,8 @@ const TestimonialSection = () => {
     },
   ];
 
+  const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
+
   return (
     <section className="testimonials-section flex-center flex-col lg:mb-20">
       <div className="testimonial-header-container w-11/12 2xl:w-9/12 rounded-[20px] h-[481px] lg:h-[685px] text-white flex-center">
@@ -49,7 +53,10 @@ const TestimonialSection = () => {
       </div>
 
       <div className="w-11/12 lg:hidden lg:w-4/12 mt-11 mb-20">
-        <CustomButton btnName="Start Your Story" />
+        <CustomButton
+          btnName="Start Your Story"
+          onClick={() => setShowPopupForm(true)}
+        />
       </div>
     </section>
   );
