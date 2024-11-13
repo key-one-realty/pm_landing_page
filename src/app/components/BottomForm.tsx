@@ -126,7 +126,7 @@ const BottomForm = () => {
             error={errors.message}
           />
         </div>
-        <div className="w-full lg:w-5/12 2xl:w-4/12">
+        <div className="w-full lg:w-5/12 2xl:w-6/12">
           <CustomButton btnName="Send Message" isPending={isPending} />
         </div>
       </form>

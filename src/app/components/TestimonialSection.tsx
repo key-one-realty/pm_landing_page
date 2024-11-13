@@ -38,7 +38,7 @@ const TestimonialSection = () => {
 
   return (
     <section className="testimonials-section flex-center flex-col lg:mb-20">
-      <div className="testimonial-header-container w-11/12 2xl:w-9/12 rounded-[20px] h-[481px] lg:h-[685px] text-white flex-center">
+      <div className="testimonial-header-container w-11/12 2xl:w-8/12 rounded-[20px] h-[481px] lg:h-[685px] text-white flex-center">
         <div className="flex-start-col justify-end gap-3 h-full w-11/12 pb-8">
           <h2 className="text-2xl lg:text-4xl font-bold lg:w-6/12">
             Testimonials from Our Esteemed Landlords and Tenants
@@ -46,7 +46,7 @@ const TestimonialSection = () => {
           <p className="text-base lg:text-2xl">Real stories from out clients</p>
         </div>
       </div>
-      <div className="testimonials -mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 2xl:w-9/12 gap-6 ">
+      <div className="testimonials -mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 2xl:w-8/12 gap-6 ">
         {reviews.map((review) => (
           <TestimonialCard {...review} key={review.id} />
         ))}

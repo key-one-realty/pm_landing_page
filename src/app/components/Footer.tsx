@@ -54,7 +54,7 @@ const Footer = () => {
         opacity="0.15"
         className="-bottom-20 -left-36"
       />
-      <div className="footer-header flex-center lg:justify-between w-10/12 text-white">
+      <div className="footer-header flex-center lg:justify-between w-10/12 2xl:w-8/12 text-white">
         <ImageContainer
           src="/keyone_logo.svg"
           alt="Keyone Logo in the footer"
@@ -83,7 +83,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-white flex-center-col lg:flex-row lg:items-start gap-20 lg:w-10/12 lg:gap-0 mt-[89px] lg:mb-20">
+      <div className="text-white flex-center-col lg:flex-row lg:items-start gap-20 lg:w-10/12 2xl:w-8/12 lg:gap-0 mt-[89px] lg:mb-20">
         <div className="flex-center-col lg:items-start text-center gap-14 lg:w-3/12">
           <h3 className="text-2xl font-semibold text-center">Quick Link</h3>
           <ul className="flex flex-center-col lg:items-start gap-9 ">

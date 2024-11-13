@@ -170,9 +170,9 @@ const Navbar = () => {
       </div>
       <div className="hidden lg:flex flex-center w-full pt-12 z-50">
         <div
-          className={`w-10/12 flex-between ${
+          className={`w-10/12 2xl:w-8/12 flex-between ${
             isScrolling
-              ? "bg-black py-4 px-16 fixed top-0 left-0 w-full flex justify-around transition-all"
+              ? "bg-black py-4 px-16 2xl:px-64 fixed top-0 left-0 w-full 2xl:w-full flex justify-around transition-all"
               : ""
           }`}
         >

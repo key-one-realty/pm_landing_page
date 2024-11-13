@@ -15,8 +15,8 @@ export default function Home() {
     <main className="main max-w-full relative">
       <PopupForm />
       <HomeSection />
-      <section className="odometer my-14 lg:my-20">
-        <div className="odometer-values flex-center flex-wrap gap-12 gap-y-7">
+      <section className="odometer my-14 lg:my-20 w-full flex-center">
+        <div className="odometer-values flex-center lg:justify-between flex-wrap gap-12 gap-y-7 w-10/12 2xl:w-8/12">
           <OdometerText
             value="95"
             description="Occupancy Rate"
@@ -46,8 +46,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="premier-property flex-between flex-col lg:flex-row gap-9 pb-14 lg:mt-10">
-        <div className="section-img flex justify-start w-full">
+      <section className="premier-property flex-between lg:justify-start flex-col lg:flex-row gap-9 pb-14 lg:mt-10">
+        <div className="section-img flex justify-start w-full lg:w-6/12">
           <ImageContainer
             src="/premier_property.png"
             alt="premier property management for the chosen ones"
@@ -56,7 +56,7 @@ export default function Home() {
             className="w-[90svw] h-[246px] lg:h-[43.952vh] lg:w-[47.083vw]"
           />
         </div>
-        <div className="flex-center w-11/12 lg:w-10/12 2xl:w-8/12 lg:pr-28">
+        <div className="flex-center w-11/12 lg:w-10/12 2xl:w-5/12 lg:pr-28">
           <div className="section-description flex-center flex-col gap-5">
             <h2 className="text-4xl lg:text-6xl font-bold">
               Premier Property Management for the Chosen Ones
@@ -75,7 +75,7 @@ export default function Home() {
 
       <ServiceSection />
 
-      <section className="landlord_connect_mockup flex-center flex-col gap-6 relative">
+      <section className="landlord_connect_mockup flex-center flex-col mt-16 gap-6 relative">
         <RoundBlur
           w="412px"
           h="414px"
@@ -83,12 +83,12 @@ export default function Home() {
           className="top-20 -left-20"
         />
         <div className="">
-          <h2 className="text-4xl font-bold text-center mb-[264px]">
+          <h2 className="text-4xl font-bold text-center mb-[294px]">
             Landlord Connect
           </h2>
         </div>
 
-        <div className="mockup-container flex flex-col lg:flex-row justify-end items-center pb-10 relative h-[535px] lg:h-[248px] w-[91.372vw] lg:w-[71.667vw]">
+        <div className="mockup-container flex flex-col lg:flex-row justify-end items-center mb-10 relative h-[535px] lg:h-[248px] w-[91.372vw] lg:w-[71.667vw] 2xl:w-8/12">
           <div className="absolute -top-[50%] left-0 lg:hidden">
             <ImageContainer
               src={"/mockup_sm.png"}
@@ -109,7 +109,7 @@ export default function Home() {
           </div>
 
           <div className="mockup-content text-white w-10/12 flex justify-start items-start flex-col gap-7">
-            <h2 className="text-4xl lg:text-[45px] font-bold">
+            <h2 className="text-4xl lg:text-[45px] leading-[55px] font-bold">
               Access Excellence Anytime, Anywhere!
             </h2>
             <p>
@@ -136,8 +136,8 @@ export default function Home() {
             Strategic Partnerships with Premier Marketing Platforms
           </p>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 lg:w-10/12 items-center justify-center gap-12 w-full lg:justify-evenly">
-          <div className="flex-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 lg:w-10/12 2xl:w-8/12 items-center justify-center gap-12 w-full lg:justify-evenly 2xl:justify-between">
+          <div className="flex-center 2xl:justify-start">
             <ImageContainer
               src="/icons/dubai_tourism.svg"
               alt="Dubai Tourism"
@@ -145,7 +145,7 @@ export default function Home() {
               h={78}
             />
           </div>
-          <div className="flex-center">
+          <div className="flex-center 2xl:justify-evenly">
             <ImageContainer
               src="/icons/flipkey_review.svg"
               alt="Keyone is recommended on flipkey"
@@ -153,7 +153,7 @@ export default function Home() {
               h={78}
             />
           </div>
-          <div className="flex-center">
+          <div className="flex-center 2xl:justify-evenly">
             <ImageContainer
               src="/icons/flipkey_rated.svg"
               alt="Keyone is rated excellent on flipkey"
@@ -161,7 +161,7 @@ export default function Home() {
               h={135}
             />
           </div>
-          <div className="flex-center">
+          <div className="flex-center 2xl:justify-end">
             <ImageContainer
               src="/icons/airbnb.svg"
               alt="Keyone is verified on airbnb"

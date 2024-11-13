@@ -44,13 +44,13 @@ const ContactSection = () => {
             management for your distinguished property.
           </p>
         </div>
-        <div className="lg:flex lg:justify-around lg:w-11/12 h-full">
-          <div className="flex-center w-full h-full">
+        <div className="lg:flex lg:justify-around lg:w-11/12 2xl:w-8/12 h-full">
+          <div className="flex-center 2xl:justify-start w-full h-full">
             <ImageContainer
               src="/bottom_form.png"
               alt="pretty lady sitting in a beautiful office"
               fill
-              className="w-[87.907vw] lg:w-[40.556vw] h-[48.085vh] lg:h-[57.863vh] rounded-[20px]"
+              className="w-[87.907vw] lg:w-[40.556vw] 2xl:w-[35.556vw] h-[48.085vh] lg:h-[57.863vh] rounded-[20px]"
               imgClassName="rounded-[20px] object-cover"
             />
           </div>
