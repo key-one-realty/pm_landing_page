@@ -1,101 +1,179 @@
-import Image from "next/image";
+import ImageContainer from "./components/shared/ImageContainer";
+import OdometerText from "./components/OdometerText";
+import CustomButton from "./components/shared/CustomButton";
+import ServiceSection from "./components/sections/ServiceSection";
+import TestimonialSection from "./components/TestimonialSection";
+import RoundBlur from "./components/shared/RoundBlur";
+import HomeSection from "./components/sections/Home";
+import AboutSection from "./components/sections/About";
+import ContactSection from "./components/sections/Contact";
+import PopupForm from "./components/PopupForm";
+import MockupBtn from "./components/MockupBtn";
+import PremierPropertyBtn from "./components/PremierPropertyBtn";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="main max-w-full relative">
+      <PopupForm />
+      <HomeSection />
+      <section className="odometer my-14 lg:my-20">
+        <div className="odometer-values flex-center flex-wrap gap-12 gap-y-7">
+          <OdometerText
+            value="95"
+            description="Occupancy Rate"
+            suffixSymbol="%"
+          />
+          <OdometerText
+            value="24"
+            valueDenominator="7"
+            description="Maintenance Support"
+            suffixSymbol=""
+          />
+          <OdometerText
+            value="30"
+            description="Increased Income"
+            suffixSymbol="%"
+          />
+          <OdometerText
+            value="18"
+            description="Years of Excellence"
+            suffixSymbol="+"
+          />
+          <OdometerText
+            value="2000"
+            description="Properties Managed"
+            suffixSymbol="+"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      <section className="premier-property flex-between flex-col lg:flex-row gap-9 pb-14 lg:mt-10">
+        <div className="section-img flex justify-start w-full">
+          <ImageContainer
+            src="/premier_property.png"
+            alt="premier property management for the chosen ones"
+            fill
+            imgClassName="object-cover rounded-tr-[20px] rounded-br-[20px]"
+            className="w-[90svw] h-[246px] lg:h-[43.952vh] lg:w-[47.083vw]"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+        <div className="flex-center w-11/12 lg:w-10/12 2xl:w-8/12 lg:pr-28">
+          <div className="section-description flex-center flex-col gap-5">
+            <h2 className="text-4xl lg:text-6xl font-bold">
+              Premier Property Management for the Chosen Ones
+            </h2>
+            <p>
+              Experience exceptional property management tailored exclusively
+              for discerning property owners. We elevate your investment with
+              unparalleled professionalism and personalized attention, ensuring
+              your property reaches its fullest potential. Trust us to provide
+              the finest care that only the select few can appreciate.
+            </p>
+            <PremierPropertyBtn />
+          </div>
+        </div>
+      </section>
+
+      <ServiceSection />
+
+      <section className="landlord_connect_mockup flex-center flex-col gap-6 relative">
+        <RoundBlur
+          w="412px"
+          h="414px"
+          opacity="0.15"
+          className="top-20 -left-20"
+        />
+        <div className="">
+          <h2 className="text-4xl font-bold text-center mb-[264px]">
+            Landlord Connect
+          </h2>
+        </div>
+
+        <div className="mockup-container flex flex-col lg:flex-row justify-end items-center pb-10 relative h-[535px] lg:h-[248px] w-[91.372vw] lg:w-[71.667vw]">
+          <div className="absolute -top-[50%] left-0 lg:hidden">
+            <ImageContainer
+              src={"/mockup_sm.png"}
+              alt="Landlord Connect Mockup"
+              fill
+              className="w-[91.372vw] h-[53.528vh] object-contain"
+            />
+          </div>
+
+          <div className="hidden lg:flex">
+            <ImageContainer
+              src={"/mockup.png"}
+              alt="Landlord Connect Mockup"
+              fill
+              className="w-[40svw] -ml-28 2xl:object-[70%] h-[737px] object-contain -mt-[360px]"
+              imgClassName="object-[63%] 2xl:object-[70%] object-cover"
+            />
+          </div>
+
+          <div className="mockup-content text-white w-10/12 flex justify-start items-start flex-col gap-7">
+            <h2 className="text-4xl lg:text-[45px] font-bold">
+              Access Excellence Anytime, Anywhere!
+            </h2>
+            <p>
+              Insightful Management Control with Our{" "}
+              <span className="font-bold">Advanced Landlord App</span>
+            </p>
+          </div>
+        </div>
+        <MockupBtn />
+      </section>
+
+      <AboutSection />
+
+      <TestimonialSection />
+
+      <section className="flex-center flex-col gap-14 mb-14 lg:mb-36">
+        <div className="flex-center flex-col gap-6 w-11/12">
+          <h1 className="text-3xl font-bold text-center lg:w-4/12">
+            Marketing Excellence Through Partnership
+          </h1>
+          <p className="text-base text-center lg:w-8/12">
+            Amplify Your Property's Presence by Showcasing It on the World's
+            Most Influential Listing Websites. Maximize Exposure Through Our
+            Strategic Partnerships with Premier Marketing Platforms
+          </p>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 lg:w-10/12 items-center justify-center gap-12 w-full lg:justify-evenly">
+          <div className="flex-center">
+            <ImageContainer
+              src="/icons/dubai_tourism.svg"
+              alt="Dubai Tourism"
+              w={126}
+              h={78}
+            />
+          </div>
+          <div className="flex-center">
+            <ImageContainer
+              src="/icons/flipkey_review.svg"
+              alt="Keyone is recommended on flipkey"
+              w={145}
+              h={78}
+            />
+          </div>
+          <div className="flex-center">
+            <ImageContainer
+              src="/icons/flipkey_rated.svg"
+              alt="Keyone is rated excellent on flipkey"
+              w={126}
+              h={135}
+            />
+          </div>
+          <div className="flex-center">
+            <ImageContainer
+              src="/icons/airbnb.svg"
+              alt="Keyone is verified on airbnb"
+              w={150}
+              h={113}
+            />
+          </div>
+        </div>
+      </section>
+
+      <ContactSection />
+    </main>
   );
 }

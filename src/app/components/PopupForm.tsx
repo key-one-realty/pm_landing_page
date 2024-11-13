@@ -1,0 +1,161 @@
+"use client";
+import React, { useEffect, useRef } from "react";
+import ImageContainer from "./shared/ImageContainer";
+import FormInput from "./shared/FormInput";
+import CustomButton from "./shared/CustomButton";
+import { useComponentStore } from "../store/componentStore";
+import { useComponentStoreRef } from "../utils/customHooks";
+import { calculatedFormPayload, PageSections, RoomType } from "../utils/enums";
+import { ContactInsertRequest, PopupFormInputs } from "../utils/types";
+import { useForm } from "react-hook-form";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useApiStore } from "../store/apiStore";
+
+const PopupForm = () => {
+  const popupFormRef = useRef<HTMLDivElement | null>(null);
+  const showPopUpForm = useComponentStore((state) => state.showPopupForm);
+
+  const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
+
+  useComponentStoreRef(popupFormRef, PageSections.POPUPFORM);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<PopupFormInputs>({
+    defaultValues: {
+      fullName: "",
+      email: "",
+      comments: "",
+      phone_number: "",
+      property_type: "Property Type",
+    },
+  });
+
+  const formValues = watch();
+
+  const createContact = useApiStore((state) => state.createContact);
+
+  const { data, isPending, isSuccess, mutateAsync } = useMutation({
+    mutationKey: ["popup-form"],
+    mutationFn: async (payload: ContactInsertRequest) => {
+      const mutationReq = await createContact(payload);
+
+      console.log(mutationReq);
+    },
+  });
+
+  const handlePopupFormRequest = async (data: PopupFormInputs) => {
+    const name = data.fullName.split(" ");
+    const firstName = name[0];
+    const familyName = name[1];
+    const payload: ContactInsertRequest = {
+      ...calculatedFormPayload,
+      firstName: firstName,
+      familyName: familyName,
+      mobilePhone: data.phone_number,
+      remarks: data.comments,
+      bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
+      budget: "",
+      budget2: "",
+    };
+
+    await mutateAsync(payload);
+    setShowPopupForm(false);
+  };
+
+  return (
+    <div
+      ref={popupFormRef}
+      className={`${
+        showPopUpForm ? "show-popup-form" : "hidden"
+      } popup-form-container absolute top-0 left-0 z-50 w-full h-screen max-w-[100svw] max-h-screen flex-center`}
+    >
+      <div className="absolute blur-overlay blur-md top-0 left-0 w-full h-full"></div>
+
+      <div className="popup-form-content h-5/6 w-11/12 flex-center-col justify-evenly">
+        <div className="form-header w-full text-white flex-center flex-col gap-3">
+          <div
+            className="back-btn w-full flex-start cursor-pointer"
+            onClick={() => setShowPopupForm(false)}
+          >
+            <ImageContainer
+              src="/icons/chevron_left.svg"
+              alt="back button"
+              w={24.212}
+              h={24.212}
+              className="rotate-180"
+            />
+          </div>
+          <div className="header-content flex-center-col text-center w-11/12 lg:w-6/12 gap-7">
+            <h2 className="text-3xl lg:text-4xl font-bold">
+              Unlock Your Property's True Potential
+            </h2>
+            <p className="text-xl font-medium text-center">
+              Experience Elite Management with Key One{" "}
+              <span className="font-extrabold">
+                Ready to Elevate Your Investment Returns?
+              </span>
+            </p>
+          </div>
+        </div>
+        <form
+          className="h-full w-full lg:w-5/12 flex-center-col gap-[6.87px]"
+          onSubmit={handleSubmit(handlePopupFormRequest)}
+        >
+          <FormInput
+            inputIcon="/icons/email.svg"
+            name="fullName"
+            placeholder="Full Name"
+            register={register}
+            value={formValues.fullName}
+            fieldOptions={{ required: true }}
+            error={errors.fullName}
+          />
+          <FormInput
+            inputIcon="/icons/email_address.svg"
+            name="email"
+            placeholder="Email Address"
+            register={register}
+            value={formValues.email}
+            fieldOptions={{ required: true }}
+            error={errors.email}
+          />
+          <FormInput
+            inputIcon="/icons/phone_number.svg"
+            name="phone_number"
+            placeholder="Phone Number"
+            register={register}
+            value={formValues.phone_number}
+            fieldOptions={{ required: true }}
+            error={errors.phone_number}
+          />
+          <FormInput
+            inputIcon="/icons/property_type.svg"
+            name="property_type"
+            placeholder="Property Type"
+            inputType="select"
+            options={["Apartment", "Villa", "House", "Office"]}
+            register={register}
+            value={formValues.property_type}
+            error={errors.property_type}
+          />
+          <FormInput
+            inputIcon="/icons/additional_comments.svg"
+            name="comments"
+            inputType="textarea"
+            placeholder="Additional Comments or Questions"
+            register={register}
+            value={formValues.comments}
+            error={errors.comments}
+          />
+          <CustomButton btnName="Submit" isPending={isPending} />
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default PopupForm;
