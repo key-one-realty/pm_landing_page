@@ -28,7 +28,7 @@ export const useApiStore = create<useApiStoreState>()(
 
             return createContact
         } catch (error) {
-            // console.log(`Error submitting Contact: ${error}`);
+            console.log(`Error submitting Contact: ${error}`);
             return false
         }
     }}),
