@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import BottomFormInput from "./shared/BottomFormInput";
 import CustomButton from "./shared/CustomButton";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,8 @@ import { calculatedFormPayload, RoomType } from "../utils/enums";
 import { useMutation } from "@tanstack/react-query";
 import { useApiStore } from "../store/apiStore";
 import { sendGTMEvent } from "@next/third-parties/google";
+import { useURLParams } from "../utils/customHooks";
+import LoadingFallback from "./shared/LoadingFallback";
 
 type BottomFormValues = {
   name: string;
@@ -48,6 +50,8 @@ const BottomForm = () => {
     },
   });
 
+  const [campaignSource, campaignMedium, campaignMetadata] = useURLParams();
+
   const handleSubmitContactReq = async (data: BottomFormValues) => {
     const name = data.name.split(" ");
     const firstName = name[0];
@@ -57,10 +61,12 @@ const BottomForm = () => {
       firstName: firstName,
       familyName: familyName,
       mobilePhone: data.phone,
-      remarks: data.message,
+      remarks: data.message + campaignMetadata,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",
       budget2: "",
+      campaignSource: campaignSource,
+      campaignMedium: campaignMedium,
     };
 
     await mutateAsync(payload);
@@ -82,55 +88,57 @@ const BottomForm = () => {
   }, [showStatus]);
 
   return (
-    <div className="w-full lg:w-full 2xl:w-10/12 flex-center-col pt-10 lg:pt-0 pb-24 lg:pb-0 h-full lg:h-[450px] 2xl:h-[546px]">
-      {showStatus && isError && (
-        <span className="text-red-500 text-center">{error.message}</span>
-      )}
-      {showStatus && isSuccess && (
-        <span className="text-green-300 text-center">
-          Thank you for contacting us! Someone from the team should reach out to
-          you soon
-        </span>
-      )}
-      <form
-        className="flex-center-col lg:items-start lg:justify-between gap-9 w-11/12 h-full"
-        onSubmit={handleSubmit(handleSubmitContactReq)}
-      >
-        <div className="w-full lg:flex lg:flex-col lg:justify-between h-full">
-          <BottomFormInput
-            register={register}
-            error={errors.name}
-            fieldOptions={{ required: true }}
-            name="name"
-            placeholder="Name"
-          />
-          <BottomFormInput
-            register={register}
-            error={errors.email}
-            fieldOptions={{ required: true }}
-            name="email"
-            placeholder="Email"
-          />
-          <BottomFormInput
-            register={register}
-            error={errors.phone}
-            fieldOptions={{ required: true }}
-            name="phone"
-            placeholder="Phone"
-          />
-          <BottomFormInput
-            name="message"
-            placeholder="Message"
-            inputType="textarea"
-            register={register}
-            error={errors.message}
-          />
-        </div>
-        <div className="w-full lg:w-5/12 2xl:w-6/12">
-          <CustomButton btnName="Send Message" isPending={isPending} />
-        </div>
-      </form>
-    </div>
+    <Suspense fallback={<LoadingFallback />}>
+      <div className="w-full lg:w-full 2xl:w-10/12 flex-center-col pt-10 lg:pt-0 pb-24 lg:pb-0 h-full lg:h-[450px] 2xl:h-[546px]">
+        {showStatus && isError && (
+          <span className="text-red-500 text-center">{error.message}</span>
+        )}
+        {showStatus && isSuccess && (
+          <span className="text-green-300 text-center">
+            Thank you for contacting us! Someone from the team should reach out
+            to you soon
+          </span>
+        )}
+        <form
+          className="flex-center-col lg:items-start lg:justify-between gap-9 w-11/12 h-full"
+          onSubmit={handleSubmit(handleSubmitContactReq)}
+        >
+          <div className="w-full lg:flex lg:flex-col lg:justify-between h-full">
+            <BottomFormInput
+              register={register}
+              error={errors.name}
+              fieldOptions={{ required: true }}
+              name="name"
+              placeholder="Name"
+            />
+            <BottomFormInput
+              register={register}
+              error={errors.email}
+              fieldOptions={{ required: true }}
+              name="email"
+              placeholder="Email"
+            />
+            <BottomFormInput
+              register={register}
+              error={errors.phone}
+              fieldOptions={{ required: true }}
+              name="phone"
+              placeholder="Phone"
+            />
+            <BottomFormInput
+              name="message"
+              placeholder="Message"
+              inputType="textarea"
+              register={register}
+              error={errors.message}
+            />
+          </div>
+          <div className="w-full lg:w-5/12 2xl:w-6/12">
+            <CustomButton btnName="Send Message" isPending={isPending} />
+          </div>
+        </form>
+      </div>
+    </Suspense>
   );
 };
 

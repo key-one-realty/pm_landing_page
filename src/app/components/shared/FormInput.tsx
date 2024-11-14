@@ -60,7 +60,11 @@ const FormInput = ({
       case "select":
         return (
           <select
-            className={`form-input ${value != "" && "text-secondary-black"}`}
+            className={`form-input ${
+              value != "" &&
+              value.toLowerCase() != "property type" &&
+              "text-secondary-black"
+            }`}
             {...register(name, fieldOptions)}
           >
             <option defaultValue={""} disabled>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import ImageContainer from "../shared/ImageContainer";
 import BottomForm from "../BottomForm";
 import Footer from "../Footer";
@@ -54,7 +54,9 @@ const ContactSection = () => {
               imgClassName="rounded-[20px] object-cover"
             />
           </div>
-          <BottomForm />
+          <Suspense>
+            <BottomForm />
+          </Suspense>
         </div>
       </div>
       <Footer />

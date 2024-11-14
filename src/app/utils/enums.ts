@@ -90,4 +90,6 @@ export const calculatedFormPayload =
     },
     budget: budgetRange,
     requirementCountryID: "65946",
+    campaignSource: "",
+    campaignMedium: ""
 }

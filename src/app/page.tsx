@@ -9,12 +9,18 @@ import ContactSection from "./components/sections/Contact";
 import PopupForm from "./components/PopupForm";
 import MockupBtn from "./components/MockupBtn";
 import PremierPropertyBtn from "./components/PremierPropertyBtn";
+import { Suspense } from "react";
+import LoadingFallback from "./components/shared/LoadingFallback";
 
 export default function Home() {
   return (
     <main className="main max-w-full relative overflow-x-hidden overflow-y-auto">
-      <PopupForm />
-      <HomeSection />
+      <Suspense fallback={<LoadingFallback />}>
+        <PopupForm />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <HomeSection />
+      </Suspense>
       <section className="odometer my-14 lg:my-20 w-full flex-center">
         <div className="odometer-values flex-center lg:justify-between flex-wrap gap-12 gap-y-7 w-10/12 2xl:w-8/12">
           <OdometerText
@@ -172,7 +178,9 @@ export default function Home() {
         </div>
       </section>
 
-      <ContactSection />
+      <Suspense fallback={<LoadingFallback />}>
+        <ContactSection />
+      </Suspense>
     </main>
   );
 }
