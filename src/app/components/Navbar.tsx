@@ -76,7 +76,7 @@ const Navbar = () => {
   return (
     <>
       <div className="lg:hidden w-full flex-center-col z-40 relative gap-4 min-h-10">
-        <div className="flex justify-between items-center px-2 pt-16 w-10/12">
+        <div className="flex justify-between items-center px-2 pt-16 w-11/12">
           <div
             className="hamburger-menu flex flex-col justify-center items-center gap-2"
             onClick={handleOpenNav}

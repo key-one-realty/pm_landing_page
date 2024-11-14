@@ -35,16 +35,16 @@ const ContactSection = () => {
         className="-top-20 -right-36"
       />
       <div className="flex-center-col h-full">
-        <div className="flex-center-col gap-[22px] lg:gap-10 text-white py-9 lg:py-16">
+        <div className="flex-center-col gap-[22px] lg:gap-10 text-white py-14 lg:py-16">
           <h1 className="text-3xl lg:text-4xl text-center font-bold w-[65%] lg:w-full">
             Get in Touch with Our Expert Team
           </h1>
-          <p className="text-lg text-center lg:w-8/12">
+          <p className="text-lg text-center w-11/12 lg:w-8/12">
             Questions or advice needed? Allow us to provide exceptional
             management for your distinguished property.
           </p>
         </div>
-        <div className="lg:flex lg:justify-around lg:w-11/12 2xl:w-8/12 h-full">
+        <div className="lg:flex lg:justify-around lg:w-10/12 2xl:w-8/12 h-full">
           <div className="flex-center 2xl:justify-start w-full h-full">
             <ImageContainer
               src="/bottom_form.png"

@@ -17,7 +17,7 @@ const RoundBlur = ({
 }: RoundBlurProps) => {
   return (
     <div
-      className={`hidden absolute rounded-[50%] blur-[50px] ${className} overflow-hidden`}
+      className={`absolute rounded-[50%] blur-[50px] ${className} overflow-hidden`}
     >
       <div
         style={{

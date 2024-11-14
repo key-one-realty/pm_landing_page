@@ -39,7 +39,7 @@ const TestimonialSection = () => {
   return (
     <section className="testimonials-section flex-center flex-col lg:mb-20">
       <div className="testimonial-header-container w-11/12 2xl:w-8/12 rounded-[20px] h-[481px] lg:h-[685px] text-white flex-center">
-        <div className="flex-start-col justify-end gap-3 h-full w-11/12 pb-8">
+        <div className="flex-start-col justify-end gap-3 h-full w-11/12 pb-8 lg:pb-16">
           <h2 className="text-2xl lg:text-4xl font-bold lg:w-6/12">
             Testimonials from Our Esteemed Landlords and Tenants
           </h2>

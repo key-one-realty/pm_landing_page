@@ -25,7 +25,7 @@ body {
 
 .navbar-container {
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.3);
+  background: #8a8a8a4d;
 }
 
 .navbar-container .active {
@@ -148,7 +148,8 @@ body {
 
 @media screen and (min-width: 1024px) {
   .main-content {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 160px);
+    /* height: fit-content */
   }
 }
 

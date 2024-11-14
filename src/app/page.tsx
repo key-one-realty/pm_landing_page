@@ -12,7 +12,7 @@ import PremierPropertyBtn from "./components/PremierPropertyBtn";
 
 export default function Home() {
   return (
-    <main className="main max-w-full relative">
+    <main className="main max-w-full relative overflow-x-hidden overflow-y-auto">
       <PopupForm />
       <HomeSection />
       <section className="odometer my-14 lg:my-20 w-full flex-center">
@@ -75,20 +75,20 @@ export default function Home() {
 
       <ServiceSection />
 
-      <section className="landlord_connect_mockup flex-center flex-col mt-16 gap-6 relative">
+      <section className="landlord_connect_mockup flex-center flex-col mt-12 gap-6 relative">
         <RoundBlur
           w="412px"
           h="414px"
           opacity="0.15"
-          className="top-20 -left-20"
+          className="top-40 -left-20"
         />
         <div className="">
-          <h2 className="text-4xl font-bold text-center mb-[294px]">
+          <h2 className="text-4xl font-bold text-center mb-[220px] lg:mb-[294px]">
             Landlord Connect
           </h2>
         </div>
 
-        <div className="mockup-container flex flex-col lg:flex-row justify-end items-center mb-10 relative h-[535px] lg:h-[248px] w-[91.372vw] lg:w-[71.667vw] 2xl:w-8/12">
+        <div className="mockup-container flex flex-col lg:flex-row justify-end items-center mb-2 relative h-[505px] lg:h-[248px] w-[91.372vw] lg:w-9/12 2xl:w-8/12">
           <div className="absolute -top-[50%] left-0 lg:hidden">
             <ImageContainer
               src={"/mockup_sm.png"}
@@ -112,7 +112,7 @@ export default function Home() {
             <h2 className="text-4xl lg:text-[45px] leading-[55px] font-bold">
               Access Excellence Anytime, Anywhere!
             </h2>
-            <p>
+            <p className="pb-12 lg:pb-0">
               Insightful Management Control with Our{" "}
               <span className="font-bold">Advanced Landlord App</span>
             </p>
@@ -136,8 +136,8 @@ export default function Home() {
             Strategic Partnerships with Premier Marketing Platforms
           </p>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 lg:w-10/12 2xl:w-8/12 items-center justify-center gap-12 w-full lg:justify-evenly 2xl:justify-between">
-          <div className="flex-center 2xl:justify-start">
+        <div className="grid grid-cols-2 lg:grid-cols-4 lg:w-10/12 2xl:w-8/12 items-center justify-center gap-6 lg:gap-12 w-full lg:justify-between">
+          <div className="flex-center lg:justify-start">
             <ImageContainer
               src="/icons/dubai_tourism.svg"
               alt="Dubai Tourism"
@@ -145,7 +145,7 @@ export default function Home() {
               h={78}
             />
           </div>
-          <div className="flex-center 2xl:justify-evenly">
+          <div className="flex-center lg:justify-evenly">
             <ImageContainer
               src="/icons/flipkey_review.svg"
               alt="Keyone is recommended on flipkey"
@@ -153,7 +153,7 @@ export default function Home() {
               h={78}
             />
           </div>
-          <div className="flex-center 2xl:justify-evenly">
+          <div className="flex-center lg:justify-evenly">
             <ImageContainer
               src="/icons/flipkey_rated.svg"
               alt="Keyone is rated excellent on flipkey"
@@ -161,7 +161,7 @@ export default function Home() {
               h={135}
             />
           </div>
-          <div className="flex-center 2xl:justify-end">
+          <div className="flex-center lg:justify-end">
             <ImageContainer
               src="/icons/airbnb.svg"
               alt="Keyone is verified on airbnb"

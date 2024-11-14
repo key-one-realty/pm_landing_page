@@ -21,9 +21,9 @@ const AboutSection = () => {
   return (
     <section
       ref={aboutSection}
-      className="flex-center flex-col lg:flex-row my-14 gap-16"
+      className="flex-center flex-col lg:flex-row mt-14 mb-20 gap-16"
     >
-      <div className="flex-center flex-col mt-14 gap-16 2xl:w-8/12">
+      <div className="flex-center flex-col mt-14 gap-8 lg:gap-4 lg:w-full 2xl:w-8/12">
         <div className="w-11/12 flex-center flex-col gap-7">
           <h2 className="text-3xl font-extrabold text-center">
             Beyond Ordinary Property Management
@@ -33,7 +33,7 @@ const AboutSection = () => {
             your property with exceptional management.
           </p>
         </div>
-        <div className="flex-center flex-col lg:flex-row w-11/12 2xl:w-full lg:w-9/12 mt-14 gap-16">
+        <div className="flex-center flex-col lg:flex-row w-11/12 2xl:w-full lg:w-10/12 mt-14 gap-16">
           <div className="w-11/12 flex-center flex-col gap-10">
             <div className="flex flex-col justify-start items-start gap-2">
               <h3 className="text-xl font-extrabold">At Key One,</h3>

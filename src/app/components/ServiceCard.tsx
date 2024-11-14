@@ -1,37 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageContainer from "./shared/ImageContainer";
 import { useComponentStore } from "../store/componentStore";
 
 type ServiceCardProps = {
   serviceHeader: string;
   serviceDescription: string;
+  index: number;
 };
 
 const ServiceCard = ({
   serviceHeader,
   serviceDescription,
+  index,
 }: ServiceCardProps) => {
   const [hover, setHover] = useState(false);
 
-  const handleOnMouseEnter = () => {
-    setHover(true);
-  };
-
-  const handleOnMouseLeave = () => {
-    setHover(false);
-  };
+  useEffect(() => {
+    if (index == 5) {
+      setHover(true);
+    }
+  }, [index]);
 
   const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
 
   return (
     <div
       className="service-card-container relative flex-center pt-7 pb-10 bg-black rounded-t-[20px] rounded-bl-[20px]"
-      onMouseEnter={handleOnMouseEnter}
-      onMouseLeave={handleOnMouseLeave}
+      // onMouseEnter={handleOnMouseEnter}
+      // onMouseLeave={handleOnMouseLeave}
     >
-      <div className="service-card text-white flex-center items-start flex-col gap-5 w-11/12">
-        <h4 className="service-header w-8/12 text-xl font-bold hover:italic">
+      <div className="service-card text-white flex-center items-start flex-col gap-5 w-[88%] lg:w-11/12">
+        <h4
+          className={`service-header w-8/12 text-xl font-bold ${
+            hover && "italic"
+          }`}
+        >
           {serviceHeader}
         </h4>
         <div className="w-full h-[1px] bg-button"></div>

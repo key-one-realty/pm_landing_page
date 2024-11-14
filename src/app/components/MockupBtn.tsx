@@ -7,8 +7,8 @@ const MockupBtn = () => {
   const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
 
   return (
-    <div className=" flex justify-end items-end w-8/12">
-      <div className="w-11/12 lg:w-4/12">
+    <div className="flex justify-center lg:justify-end items-end w-full lg:w-8/12">
+      <div className="w-11/12 lg:w-5/12">
         <CustomButton
           btnName="Download Now"
           onClick={() => setShowPopupForm(true)}

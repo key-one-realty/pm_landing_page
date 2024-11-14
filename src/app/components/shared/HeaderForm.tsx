@@ -151,7 +151,7 @@ const HeaderForm = () => {
   }, [showStatus]);
 
   return (
-    <div className="form flex-center flex-col gap-8 pb-16 lg:pb-0 w-full h-full">
+    <div className="form flex-center flex-col lg:justify-start gap-8 pb-16 lg:pb-0 w-full h-3/4">
       {showStatus && isError && (
         <span className="text-red-500 py-4 text-center">{error.message}</span>
       )}

@@ -65,7 +65,7 @@ const ServiceSection = () => {
       className="services flex-center flex-col gap-11 pb-12 lg:mt-24"
     >
       <div className="section-header w-11/12 lg:w-5/12 2xl:w-4/12">
-        <h3 className="text-xl lg:text-3xl font-semibold text-center">
+        <h3 className="text-xl lg:text-4xl font-semibold text-center">
           Exclusive Comprehensive Services for{" "}
           <span className="font-extrabold">Elite Property Owners</span>
         </h3>
@@ -74,6 +74,7 @@ const ServiceSection = () => {
         {services.map((service) => (
           <ServiceCard
             key={service.id}
+            index={service.id}
             serviceHeader={service.serviceHeader}
             serviceDescription={service.serviceDescription}
           />

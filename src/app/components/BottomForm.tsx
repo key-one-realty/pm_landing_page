@@ -82,7 +82,7 @@ const BottomForm = () => {
   }, [showStatus]);
 
   return (
-    <div className="w-full lg:w-8/12 flex-center-col pt-10 lg:pt-0 pb-24 lg:pb-0 h-full lg:h-[450px] 2xl:h-[546px]">
+    <div className="w-full lg:w-full 2xl:w-10/12 flex-center-col pt-10 lg:pt-0 pb-24 lg:pb-0 h-full lg:h-[450px] 2xl:h-[546px]">
       {showStatus && isError && (
         <span className="text-red-500 text-center">{error.message}</span>
       )}
