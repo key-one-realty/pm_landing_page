@@ -36,8 +36,6 @@ const Navbar = () => {
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
         setSectionInView(sectionName);
-      } else {
-        console.log("Section is undefined");
       }
     },
     [

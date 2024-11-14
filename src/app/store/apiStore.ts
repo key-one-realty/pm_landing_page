@@ -23,12 +23,12 @@ export const useApiStore = create<useApiStoreState>()(
               }, {} as Record<string, string>)).toString()
             const createContact = await makeRequest("/ContactInsert", { method: "POST",  data: formBody})
 
-            console.log(`Response: ${createContact}`);
+            // console.log(`Response: ${createContact}`);
             
 
             return createContact
         } catch (error) {
-            console.log(`Error submitting Contact: ${error}`);
+            // console.log(`Error submitting Contact: ${error}`);
             return false
         }
     }}),

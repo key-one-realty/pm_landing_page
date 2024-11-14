@@ -74,9 +74,7 @@ export const useComponentStore = create<ComponentStoreState>()(
         
                             // console.log(`Pop Up form style: ${JSON.stringify(popupFormRef.style)}`);
                             
-                        } else {
-                            console.log("pop up form ref form is undefined");
-                        }
+                        } 
                     } else {
                         document.body.style.overflow = "auto";
                     }

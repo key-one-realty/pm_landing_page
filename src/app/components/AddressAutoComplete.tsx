@@ -78,10 +78,10 @@ const AddressAutoComplete = ({
     if (setValue) {
       setValue!(name, selectedPlace.description, { shouldValidate: true });
       setUserInput(selectedPlace.description);
-      console.log(`Value Updated`);
+      // console.log(`Value Updated`);
     }
     register(name, { value: selectedPlace.description });
-    console.log(`Selected Place: ${selectedPlace.description}`);
+    // console.log(`Selected Place: ${selectedPlace.description}`);
     setPlaces([]);
   };
 

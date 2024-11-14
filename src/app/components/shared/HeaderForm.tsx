@@ -108,7 +108,7 @@ const HeaderForm = () => {
     setShowPopupForm(true);
   };
 
-  console.log(campaignMetadata);
+  // console.log(campaignMetadata);
 
   const handleCalculateEstimate = async (data: HeaderFormInputs) => {
     const bedroom = String(
@@ -140,7 +140,7 @@ const HeaderForm = () => {
       campaignMedium: campaignMedium,
     };
 
-    console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
+    // console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
 
     await mutateAsync(payload);
     setShowStatus(true);
