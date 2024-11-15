@@ -62,7 +62,8 @@ const FormInput = ({
           <select
             className={`form-input ${
               value != "" &&
-              value.toLowerCase() != "property type" &&
+              (value.toLowerCase() != "property type" ||
+                value != "Enter Number of Rooms") &&
               "text-secondary-black"
             }`}
             {...register(name, fieldOptions)}

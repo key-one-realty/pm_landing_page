@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
 
 const axiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_LEAD_BASE_API,
+    baseURL: "http://webapi.goyzer.com/Company.asmx",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded"
     }
