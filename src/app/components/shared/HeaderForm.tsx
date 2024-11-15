@@ -42,7 +42,7 @@ const HeaderForm = () => {
     defaultValues: {
       email: "",
       location: "",
-      number_of_rooms: "Enter Number of Rooms",
+      number_of_rooms: "Number of Rooms",
     },
   });
 
@@ -91,7 +91,7 @@ const HeaderForm = () => {
       },
     };
 
-    if (formValues.number_of_rooms != "Enter Number of Rooms") {
+    if (formValues.number_of_rooms.toLowerCase() != "number of rooms") {
       const { min, max } =
         earnings[formValues.number_of_rooms.toLowerCase() as RoomType];
 
@@ -178,13 +178,13 @@ const HeaderForm = () => {
             setValue={setValue}
             value={formValues.location}
             fieldOptions={{ required: true }}
-            error={errors.location}
+            error={errors}
           />
           <div className="w-full flex-center-col lg:flex-row gap-[14px]">
             <FormInput
               inputIcon="/icons/house.svg"
               name="number_of_rooms"
-              placeholder="Enter Number of Rooms"
+              placeholder="Number of Rooms"
               inputType="select"
               options={[
                 "Studio",
@@ -196,7 +196,7 @@ const HeaderForm = () => {
               ]}
               register={register}
               value={formValues.number_of_rooms}
-              error={errors.number_of_rooms}
+              error={errors}
             />
             <FormInput
               inputIcon="/icons/email.svg"
@@ -205,7 +205,7 @@ const HeaderForm = () => {
               register={register}
               value={formValues.email}
               fieldOptions={{ required: true }}
-              error={errors.email}
+              error={errors}
             />
           </div>
 

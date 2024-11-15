@@ -1,7 +1,7 @@
 import React from "react";
 import ImageContainer from "./ImageContainer";
 import {
-  FieldError,
+  FieldErrors,
   RegisterOptions,
   UseFormRegister,
   UseFormSetValue,
@@ -18,7 +18,7 @@ type FormInputForm = {
   options?: Array<string>;
   value: any;
   fieldOptions?: RegisterOptions<any, string> | undefined;
-  error?: FieldError;
+  error?: FieldErrors<any>;
 };
 
 const FormInput = ({
@@ -60,15 +60,16 @@ const FormInput = ({
       case "select":
         return (
           <select
+            defaultValue={"Number of Rooms"}
             className={`form-input ${
               value != "" &&
-              (value.toLowerCase() != "property type" ||
-                value != "Enter Number of Rooms") &&
+              value.toLowerCase() != "property type" &&
+              value.toLowerCase() != "number of rooms" &&
               "text-secondary-black"
             }`}
             {...register(name, fieldOptions)}
           >
-            <option defaultValue={""} disabled>
+            <option value={"Number of Rooms"} selected disabled>
               {placeholder}
             </option>
             {options &&
@@ -124,7 +125,11 @@ const FormInput = ({
       </div>
       <div className="w-11/12">
         {handleInputType()}
-        {error && <span className="text-red-300 text-sm">{error.message}</span>}
+        {error && error[name] && (
+          <span className="text-red-300 text-sm">
+            {error[name].message?.toString()}
+          </span>
+        )}
       </div>
     </div>
   );

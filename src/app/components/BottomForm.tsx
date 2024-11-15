@@ -106,21 +106,21 @@ const BottomForm = () => {
           <div className="w-full lg:flex lg:flex-col lg:justify-between h-full">
             <BottomFormInput
               register={register}
-              error={errors.name}
+              error={errors}
               fieldOptions={{ required: true }}
               name="name"
               placeholder="Name"
             />
             <BottomFormInput
               register={register}
-              error={errors.email}
+              error={errors}
               fieldOptions={{ required: true }}
               name="email"
               placeholder="Email"
             />
             <BottomFormInput
               register={register}
-              error={errors.phone}
+              error={errors}
               fieldOptions={{ required: true }}
               name="phone"
               placeholder="Phone"
@@ -130,7 +130,7 @@ const BottomForm = () => {
               placeholder="Message"
               inputType="textarea"
               register={register}
-              error={errors.message}
+              error={errors}
             />
           </div>
           <div className="w-full lg:w-5/12 2xl:w-6/12">

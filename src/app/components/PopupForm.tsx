@@ -148,7 +148,7 @@ const PopupForm = () => {
               register={register}
               value={formValues.fullName}
               fieldOptions={{ required: true }}
-              error={errors.fullName}
+              error={errors}
             />
             <FormInput
               inputIcon="/icons/email_address.svg"
@@ -157,7 +157,7 @@ const PopupForm = () => {
               register={register}
               value={formValues.email}
               fieldOptions={{ required: true }}
-              error={errors.email}
+              error={errors}
             />
             <FormInput
               inputIcon="/icons/phone_number.svg"
@@ -166,7 +166,7 @@ const PopupForm = () => {
               register={register}
               value={formValues.phone_number}
               fieldOptions={{ required: true }}
-              error={errors.phone_number}
+              error={errors}
             />
             <FormInput
               inputIcon="/icons/property_type.svg"
@@ -176,7 +176,7 @@ const PopupForm = () => {
               options={["Apartment", "Villa", "House", "Office"]}
               register={register}
               value={formValues.property_type}
-              error={errors.property_type}
+              error={errors}
             />
             <FormInput
               inputIcon="/icons/additional_comments.svg"
@@ -185,7 +185,7 @@ const PopupForm = () => {
               placeholder="Additional Comments or Questions"
               register={register}
               value={formValues.comments}
-              error={errors.comments}
+              error={errors}
             />
             <CustomButton btnName="Submit" isPending={isPending} />
           </form>

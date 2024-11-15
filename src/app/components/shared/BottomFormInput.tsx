@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback } from "react";
 import {
-  FieldError,
+  FieldErrors,
   RegisterOptions,
   UseFormRegister,
   UseFormSetValue,
@@ -14,7 +14,7 @@ type BottomFormInputProps = {
   register: UseFormRegister<any>;
   setValue?: UseFormSetValue<any>;
   fieldOptions?: RegisterOptions<any, string> | undefined;
-  error?: FieldError;
+  error?: FieldErrors<any>;
 };
 
 const BottomFormInput = ({
@@ -64,7 +64,11 @@ const BottomFormInput = ({
   return (
     <div className="w-full py-4 border-b border-b-white">
       {handleInputType()}
-      {error && <span className="text-red-300 text-sm">{error.message}</span>}
+      {error && error[name] && (
+        <span className="text-red-300 text-sm">
+          {error[name].message?.toString()}
+        </span>
+      )}
     </div>
   );
 };
