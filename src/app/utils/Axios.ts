@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
 
 const axiosInstance = axios.create({
-    baseURL: "http://webapi.goyzer.com/Company.asmx",
+    baseURL: "https://webapi.goyzer.com/Company.asmx",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded"
     }

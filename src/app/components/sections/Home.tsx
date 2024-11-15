@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import HeaderForm from "../shared/HeaderForm";
 import ImageContainer from "../shared/ImageContainer";
 import Navbar from "../Navbar";
@@ -97,7 +97,9 @@ const HomeSection = () => {
                     here.
                   </p>
                 </div>
-                <HeaderForm />
+                <Suspense>
+                  <HeaderForm />
+                </Suspense>
               </div>
             </div>
           </div>
