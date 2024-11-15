@@ -101,9 +101,6 @@ export function useDebounceValue(input: string, delay: number) {
 export function useURLParams() {
   const [campaignSource, setCampaignSource] = useState<string>("");
   const [campaignMedium, setCampaignMedium] = useState<string>("");
-  const [campaignUtm, setCampaignUtm] = useState<string>("");
-  const [campaignUtmTerm, setCampaignUtmTerm] = useState<string>("");
-  const [campaignMetadata, setCampaignMetadata] = useState<string>("");
   const [campaignUTMURL, setCampaignUTMURL] = useState<string>("");
 
   const params = useSearchParams();
@@ -111,8 +108,6 @@ export function useURLParams() {
   useEffect(() => {
     const campaignSourceParam = params.get("utm_source");
     const campaignMediumParam = params.get("utm_medium");
-    const campaignUtm = params.get("utm_campaign");
-    const campaignUtmTerm = params.get("utm_term");
 
     let campaignMetadataString = "\nCampaign Metadata => \n";
 
@@ -125,41 +120,12 @@ export function useURLParams() {
 
     if (campaignSourceParam) {
       setCampaignSource(campaignSourceParam);
-      setCampaignMetadata(
-        campaignMetadataString + `Campaign Source: ${campaignSource} `
-      );
     }
 
     if (campaignMediumParam) {
       setCampaignMedium(campaignMediumParam);
-      setCampaignMetadata(
-        (campaignMetadata) =>
-          campaignMetadata + `Campaign Medium: ${campaignMedium} `
-      );
-    }
-
-    if (campaignUtm) {
-      setCampaignUtm(campaignUtm);
-      setCampaignMetadata(
-        (campaignMetadata) => campaignMetadata + `Campaign UTM: ${campaignUtm} `
-      );
-    }
-
-    if (campaignUtmTerm) {
-      setCampaignUtmTerm(campaignUtmTerm);
-      setCampaignMetadata(
-        (campaignMetadata) =>
-          campaignMetadata + `Campaign UTM Term: ${campaignUtmTerm}`
-      );
     }
   }, [params]);
 
-  return [
-    campaignSource,
-    campaignMedium,
-    campaignUtm,
-    campaignUtmTerm,
-    campaignMetadata,
-    campaignUTMURL,
-  ];
+  return [campaignSource, campaignMedium, campaignUTMURL];
 }
