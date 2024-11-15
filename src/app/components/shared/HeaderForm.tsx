@@ -50,7 +50,7 @@ const HeaderForm = () => {
 
   const formValues = watch();
 
-  const [campaignSource, campaignMedium, campaignMetadata] = useURLParams();
+  const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
 
   const { isPending, isError, isSuccess, error, mutateAsync } = useMutation({
     mutationKey: ["calculator-form", formValues.email],
@@ -132,7 +132,7 @@ const HeaderForm = () => {
     const payload: ContactInsertRequest = {
       ...calculatedFormPayload,
       email: data.email,
-      remarks: `Hello, I am looking for a Property Management service for my property in ${data.location}. Number of rooms: ${data.number_of_rooms} my expected earnings is between ${minBudget} and ${maxBudget}. ${campaignMetadata}`,
+      remarks: `Hello, I am looking for a Property Management service for my property in ${data.location}. Number of rooms: ${data.number_of_rooms} my expected earnings is between ${minBudget} and ${maxBudget}. ${campaignUTMURL}`,
       bedroom: bedroom,
       budget: minBudget,
       budget2: maxBudget,

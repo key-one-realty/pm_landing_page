@@ -40,7 +40,7 @@ const PopupForm = () => {
 
   const formValues = watch();
 
-  const [campaignSource, campaignMedium, campaignMetadata] = useURLParams();
+  const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
 
   const createContact = useApiStore((state) => state.createContact);
 
@@ -64,7 +64,7 @@ const PopupForm = () => {
       firstName: firstName,
       familyName: familyName,
       mobilePhone: data.phone_number,
-      remarks: data.comments + campaignMetadata,
+      remarks: data.comments + " / " + campaignUTMURL,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",
       budget2: "",

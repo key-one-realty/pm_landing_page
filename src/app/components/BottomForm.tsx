@@ -50,7 +50,7 @@ const BottomForm = () => {
     },
   });
 
-  const [campaignSource, campaignMedium, campaignMetadata] = useURLParams();
+  const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
 
   const handleSubmitContactReq = async (data: BottomFormValues) => {
     const name = data.name.split(" ");
@@ -61,7 +61,7 @@ const BottomForm = () => {
       firstName: firstName,
       familyName: familyName,
       mobilePhone: data.phone,
-      remarks: data.message + campaignMetadata,
+      remarks: data.message + " / " + campaignUTMURL,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",
       budget2: "",

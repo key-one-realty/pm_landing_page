@@ -104,6 +104,7 @@ export function useURLParams() {
   const [campaignUtm, setCampaignUtm] = useState<string>("");
   const [campaignUtmTerm, setCampaignUtmTerm] = useState<string>("");
   const [campaignMetadata, setCampaignMetadata] = useState<string>("");
+  const [campaignUTMURL, setCampaignUTMURL] = useState<string>("");
 
   const params = useSearchParams();
 
@@ -113,7 +114,14 @@ export function useURLParams() {
     const campaignUtm = params.get("utm_campaign");
     const campaignUtmTerm = params.get("utm_term");
 
-    const campaignMetadataString = "\nCampaign Metadata => \n";
+    let campaignMetadataString = "\nCampaign Metadata => \n";
+
+    const allParams = params.entries();
+
+    for (const [key, value] of allParams) {
+      campaignMetadataString += ` ${key}= ${value} `;
+    }
+    setCampaignUTMURL(campaignMetadataString);
 
     if (campaignSourceParam) {
       setCampaignSource(campaignSourceParam);
@@ -152,5 +160,6 @@ export function useURLParams() {
     campaignUtm,
     campaignUtmTerm,
     campaignMetadata,
+    campaignUTMURL,
   ];
 }
