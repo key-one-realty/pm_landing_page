@@ -60,7 +60,7 @@ const FormInput = ({
       case "select":
         return (
           <select
-            defaultValue={"Number of Rooms"}
+            defaultValue={placeholder}
             className={`form-input ${
               value != "" &&
               value.toLowerCase() != "property type" &&
@@ -69,7 +69,7 @@ const FormInput = ({
             }`}
             {...register(name, fieldOptions)}
           >
-            <option value={"Number of Rooms"} selected disabled>
+            <option value={placeholder} selected disabled>
               {placeholder}
             </option>
             {options &&
