@@ -18,9 +18,7 @@ export default function Home() {
       <Suspense fallback={<LoadingFallback />}>
         <PopupForm />
       </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <HomeSection />
-      </Suspense>
+      <HomeSection />
       <section className="odometer my-14 lg:my-20 w-full flex-center">
         <div className="odometer-values flex-center lg:justify-between flex-wrap gap-12 gap-y-7 w-10/12 2xl:w-8/12">
           <OdometerText
