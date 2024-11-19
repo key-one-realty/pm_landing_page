@@ -108,21 +108,21 @@ const BottomForm = () => {
             <BottomFormInput
               register={register}
               error={errors}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Name is required!" }}
               name="name"
               placeholder="Name"
             />
             <BottomFormInput
               register={register}
               error={errors}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Email is required!" }}
               name="email"
               placeholder="Email"
             />
             <BottomFormInput
               register={register}
               error={errors}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Phone is required!" }}
               name="phone"
               placeholder="Phone"
             />

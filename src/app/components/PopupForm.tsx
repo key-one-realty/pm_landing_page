@@ -45,7 +45,7 @@ const PopupForm = () => {
   const createContact = useApiStore((state) => state.createContact);
 
   const { isPending, isSuccess, isError, error, mutateAsync } = useMutation({
-    mutationKey: ["popup-form"],
+    mutationKey: ["popup-form", formValues.email],
     mutationFn: async (payload: ContactInsertRequest) => {
       const mutationReq = await createContact(payload);
 
@@ -148,7 +148,7 @@ const PopupForm = () => {
               placeholder="Full Name"
               register={register}
               value={formValues.fullName}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Full Name is required!" }}
               error={errors}
             />
             <FormInput
@@ -157,7 +157,7 @@ const PopupForm = () => {
               placeholder="Email Address"
               register={register}
               value={formValues.email}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Email address is required!" }}
               error={errors}
             />
             <FormInput
@@ -166,7 +166,7 @@ const PopupForm = () => {
               placeholder="Phone Number"
               register={register}
               value={formValues.phone_number}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Phone Number is required!" }}
               error={errors}
             />
             <FormInput

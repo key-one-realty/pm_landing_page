@@ -215,7 +215,7 @@ const HeaderForm = () => {
             register={register}
             setValue={setValue}
             value={formValues.location}
-            fieldOptions={{ required: true }}
+            fieldOptions={{ required: "Location is required!" }}
             error={errors}
           />
           <div className="w-full flex-center-col lg:flex-row gap-[14px]">
@@ -234,6 +234,7 @@ const HeaderForm = () => {
               ]}
               register={register}
               value={formValues.number_of_rooms}
+              fieldOptions={{ required: "Number of Rooms is required!" }}
               error={errors}
             />
             <FormInput
@@ -242,7 +243,7 @@ const HeaderForm = () => {
               placeholder="Enter Your Email Address"
               register={register}
               value={formValues.email}
-              fieldOptions={{ required: true }}
+              fieldOptions={{ required: "Email Address is required!" }}
               error={errors}
             />
           </div>

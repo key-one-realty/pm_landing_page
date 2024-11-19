@@ -60,7 +60,9 @@ const FormInput = ({
       case "select":
         return (
           <select
-            defaultValue={placeholder}
+            aria-placeholder={placeholder}
+            value={placeholder}
+            required
             className={`form-input ${
               value != "" &&
               value.toLowerCase() != "property type" &&
@@ -69,7 +71,7 @@ const FormInput = ({
             }`}
             {...register(name, fieldOptions)}
           >
-            <option value={placeholder} selected disabled>
+            <option value={""} disabled hidden>
               {placeholder}
             </option>
             {options &&
@@ -110,27 +112,27 @@ const FormInput = ({
   };
 
   return (
-    <div className="rounded-[10px] py-3 px-[18px] bg-form-input flex-between gap-6 w-full relative">
-      <div
-        className={`w-fit ${
-          inputType == "textarea" && "flex justify-start items-start h-full"
-        } `}
-      >
-        <ImageContainer
-          src={inputIcon}
-          alt={`Icon for ${name} input field`}
-          w={24}
-          h={27}
-        />
+    <div className="w-full">
+      <div className="rounded-[10px] py-3 px-[18px] bg-form-input flex-between gap-6 w-full h-full relative">
+        <div
+          className={`w-fit ${
+            inputType == "textarea" && "flex justify-start items-start h-full"
+          } `}
+        >
+          <ImageContainer
+            src={inputIcon}
+            alt={`Icon for ${name} input field`}
+            w={24}
+            h={27}
+          />
+        </div>
+        <div className="w-11/12">{handleInputType()}</div>
       </div>
-      <div className="w-11/12">
-        {handleInputType()}
-        {error && error[name] && (
-          <span className="text-red-300 text-sm">
-            {error[name].message?.toString()}
-          </span>
-        )}
-      </div>
+      {error && error[name] && (
+        <span className="text-red-500 text-sm w-full flex-start">
+          {error[name].message?.toString()}
+        </span>
+      )}
     </div>
   );
 };

@@ -62,14 +62,16 @@ const BottomFormInput = ({
   }, []);
 
   return (
-    <div className="w-full py-4 border-b border-b-white">
-      {handleInputType()}
+    <>
+      <div className="w-full py-4 border-b border-b-white">
+        {handleInputType()}
+      </div>
       {error && error[name] && (
         <span className="text-red-300 text-sm">
           {error[name].message?.toString()}
         </span>
       )}
-    </div>
+    </>
   );
 };
 
