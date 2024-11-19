@@ -52,6 +52,10 @@ const HeaderForm = () => {
 
   const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
 
+  const createContact = useApiStore((state) => state.createContact);
+
+  // const sendZap = useApiStore((state) => state.sendZap);
+
   const { isPending, isError, isSuccess, error, mutateAsync } = useMutation({
     mutationKey: ["calculator-form", formValues.email],
     mutationFn: async (payload: ContactInsertRequest) => {
@@ -60,8 +64,6 @@ const HeaderForm = () => {
       return propertyCalculatorReq;
     },
   });
-
-  const createContact = useApiStore((state) => state.createContact);
 
   const handleRentCalculation = () => {
     const earnings: earningsType = {
@@ -132,7 +134,7 @@ const HeaderForm = () => {
     const payload: ContactInsertRequest = {
       ...calculatedFormPayload,
       email: data.email,
-      remarks: `Hello, I am looking for a Property Management service for my property in ${data.location}. Number of rooms: ${data.number_of_rooms} my expected earnings is between ${minBudget} and ${maxBudget}. ${campaignUTMURL}`,
+      remarks: `Hello, I am looking for a Property Management service for my property in ${data.location}. Email => ${data.email}, Number of rooms: ${data.number_of_rooms}. ${campaignUTMURL}`,
       bedroom: bedroom,
       budget: minBudget,
       budget2: maxBudget,
@@ -143,7 +145,16 @@ const HeaderForm = () => {
     // console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
 
     await mutateAsync(payload);
-    setShowStatus(true);
+    if (isSuccess) {
+      setShowStatus(true);
+    }
+
+    // await sendZap({
+    //   firstName: "harith",
+    //   lastName: "onigemo",
+    //   email: data.email,
+    //   location: data.location,
+    // });
   };
 
   useEffect(() => {
