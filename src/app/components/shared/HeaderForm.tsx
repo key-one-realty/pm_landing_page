@@ -112,6 +112,27 @@ const HeaderForm = () => {
 
   // console.log(campaignMetadata);
 
+  const generateRandom = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const handleGenerateRandNumber = () => {
+    const countryCodeMin = 10;
+    const countryCodeMax = 999;
+
+    const phoneNumberMin = 100000000;
+    const phoneNumberMax = 999999999;
+
+    const randomCountryCode = generateRandom(countryCodeMin, countryCodeMax);
+
+    const randomPhoneNumber = generateRandom(phoneNumberMin, phoneNumberMax);
+
+    return {
+      countryCode: `${randomCountryCode}`,
+      phoneNumber: `${randomPhoneNumber}`,
+    };
+  };
+
   const handleCalculateEstimate = async (data: HeaderFormInputs) => {
     const bedroom = String(
       calculatedFormPayload.bedroom[
@@ -131,6 +152,8 @@ const HeaderForm = () => {
       ].max
     );
 
+    const { countryCode, phoneNumber } = handleGenerateRandNumber();
+
     const payload: ContactInsertRequest = {
       ...calculatedFormPayload,
       email: data.email,
@@ -140,6 +163,10 @@ const HeaderForm = () => {
       budget2: maxBudget,
       campaignSource: campaignSource,
       campaignMedium: campaignMedium,
+      mobilePhone: phoneNumber,
+      mobileCountryCode: countryCode,
+      telephoneCountryCode: countryCode,
+      telephone: phoneNumber,
     };
 
     // console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
