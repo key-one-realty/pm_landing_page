@@ -64,6 +64,7 @@ const PopupForm = () => {
       firstName: firstName,
       familyName: familyName,
       mobilePhone: data.phone_number,
+      email: data.email,
       remarks: data.comments + " / " + campaignUTMURL,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",

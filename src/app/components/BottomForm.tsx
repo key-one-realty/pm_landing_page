@@ -61,6 +61,7 @@ const BottomForm = () => {
       firstName: firstName,
       familyName: familyName,
       mobilePhone: data.phone,
+      email: data.email,
       remarks: data.message + " / " + campaignUTMURL,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",
