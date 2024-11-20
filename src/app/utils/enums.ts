@@ -49,7 +49,7 @@ export const calculatedFormPayload =
     email: "",
     remarks: "",
     requirementType: "91212",
-    contactType: "3",
+    contactType: "4",
     countryID: "65946",
     telephoneCountryCode: "971",
     telephoneAreaCode: "50",
