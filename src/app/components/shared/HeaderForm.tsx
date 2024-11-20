@@ -54,7 +54,8 @@ const HeaderForm = () => {
 
   const createContact = useApiStore((state) => state.createContact);
 
-  // const sendZap = useApiStore((state) => state.sendZap);
+  const sendZap = useApiStore((state) => state.sendZap);
+  const zapSent = useApiStore((state) => state.zapSent);
 
   const { isPending, isError, isSuccess, error, mutateAsync } = useMutation({
     mutationKey: ["calculator-form", formValues.email],
@@ -174,14 +175,12 @@ const HeaderForm = () => {
     await mutateAsync(payload);
     if (isSuccess) {
       setShowStatus(true);
+      if (!zapSent) {
+        await sendZap({
+          email: data.email,
+        });
+      }
     }
-
-    // await sendZap({
-    //   firstName: "harith",
-    //   lastName: "onigemo",
-    //   email: data.email,
-    //   location: data.location,
-    // });
   };
 
   useEffect(() => {

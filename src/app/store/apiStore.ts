@@ -2,10 +2,11 @@ import { create } from "zustand";
 import { makeRequest } from "../utils/Axios";
 import { ContactInsertRequest } from "../utils/types";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 
 interface useApiStoreState {
+    zapSent: boolean
     createContact: (data: ContactInsertRequest) => Promise<any>
     sendZap: (data: any) => Promise<any>
 }
@@ -16,7 +17,7 @@ interface useApiStoreState {
 export const useApiStore = create<useApiStoreState>()( 
     devtools(
         persist(
-                () => ({
+                (set) => ({
     createContact: async (data: ContactInsertRequest) => {
         try {
             const formBody = new URLSearchParams(Object.entries(data).reduce((acc, [key, value]) => {
@@ -36,14 +37,25 @@ export const useApiStore = create<useApiStoreState>()(
     },
     sendZap: async (data: any) => {
         try {
-            const invokeZap = await axios.post("https://hooks.zapier.com/hooks/catch/14438499/2r1pn7n/", data)
+            let url = "https://hooks.zapier.com/hooks/catch/14438499/2r1pn7n"
+            for(const [key, value] of Object.entries(data)){
+                url += `?${key}=${value}`;
+            }
+            const invokeZap = await axios.get(url)
+
+            if (invokeZap.status == 200){
+                set(() => ({
+                    zapSent: true,
+                }))
+            }
 
             return invokeZap.data;
         } catch (error) {
             console.log(`Error sending zap: ${error}`);
-            throw new AxiosError(`Error sending zap: ${error}`)
+            // throw new AxiosError(`Error sending zap: ${error}`)
         }
-    }
+    },
+    zapSent: Boolean(false),
 }),  
      {
     name: 'keyone_pm_api_store', // name of the item in the storage (must be unique)

@@ -38,6 +38,8 @@ const BottomForm = () => {
   });
 
   const createContact = useApiStore((state) => state.createContact);
+  const sendZap = useApiStore((state) => state.sendZap);
+  const zapSent = useApiStore((state) => state.zapSent);
 
   const formValues = watch();
 
@@ -77,6 +79,13 @@ const BottomForm = () => {
 
     await mutateAsync(payload);
 
+    if (isSuccess) {
+      if (!zapSent) {
+        await sendZap({
+          email: data.email,
+        });
+      }
+    }
     setShowStatus(true);
   };
 

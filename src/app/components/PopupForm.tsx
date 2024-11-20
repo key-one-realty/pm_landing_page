@@ -20,6 +20,9 @@ const PopupForm = () => {
 
   const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
 
+  const sendZap = useApiStore((state) => state.sendZap);
+  const zapSent = useApiStore((state) => state.zapSent);
+
   useComponentStoreRef(popupFormRef, PageSections.POPUPFORM);
 
   const [showStatus, setShowStatus] = useState(false);
@@ -85,6 +88,12 @@ const PopupForm = () => {
     );
 
     await mutateAsync(payload);
+    if (!zapSent) {
+      await sendZap({
+        email: data.email,
+      });
+    }
+
     setShowStatus(true);
   };
 
