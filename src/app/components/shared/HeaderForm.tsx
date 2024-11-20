@@ -175,11 +175,12 @@ const HeaderForm = () => {
     await mutateAsync(payload);
     if (isSuccess) {
       setShowStatus(true);
-      if (!zapSent) {
-        await sendZap({
-          email: data.email,
-        });
-      }
+    }
+
+    if (!zapSent) {
+      await sendZap({
+        email: data.email,
+      });
     }
   };
 
@@ -195,6 +196,8 @@ const HeaderForm = () => {
       clearTimeout(timeout);
     };
   }, [showStatus]);
+
+  useEffect(() => {}, [isSuccess]);
 
   return (
     <Suspense fallback={<LoadingFallback />}>

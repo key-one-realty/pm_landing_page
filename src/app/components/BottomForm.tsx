@@ -79,12 +79,10 @@ const BottomForm = () => {
 
     await mutateAsync(payload);
 
-    if (isSuccess) {
-      if (!zapSent) {
-        await sendZap({
-          email: data.email,
-        });
-      }
+    if (!zapSent) {
+      await sendZap({
+        email: data.email,
+      });
     }
     setShowStatus(true);
   };
