@@ -6,11 +6,15 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
+import PhoneInput from "react-phone-number-input";
+
+import "react-phone-number-input/style.css";
 
 type BottomFormInputProps = {
   name: string;
   placeholder: string;
   inputType?: string;
+  value?: any;
   register: UseFormRegister<any>;
   setValue?: UseFormSetValue<any>;
   fieldOptions?: RegisterOptions<any, string> | undefined;
@@ -21,7 +25,9 @@ const BottomFormInput = ({
   name,
   placeholder,
   register,
+  setValue,
   fieldOptions,
+  value,
   error,
   inputType = "text",
 }: BottomFormInputProps) => {
@@ -45,6 +51,16 @@ const BottomFormInput = ({
             placeholder={placeholder}
             rows={3}
             className="text-lg w-full font-semibold text-white outline-none border-none bg-transparent"
+          />
+        );
+      case "phone":
+        return (
+          <PhoneInput
+            className="bg-transparent outline-none font-montserrat text-lg w-full font-semibold text-white"
+            defaultCountry="AE"
+            placeholder="Enter Phone Number"
+            value={value}
+            onChange={(e) => setValue!(name, e, { shouldValidate: true })}
           />
         );
 

@@ -7,6 +7,7 @@ import {
   UseFormSetValue,
 } from "react-hook-form";
 import AddressAutoComplete from "../AddressAutoComplete";
+import PhoneInput from "react-phone-number-input";
 
 type FormInputForm = {
   placeholder: string;
@@ -95,6 +96,17 @@ const FormInput = ({
             setValue={setValue}
             value={value}
             fieldOptions={fieldOptions}
+          />
+        );
+
+      case "phone":
+        return (
+          <PhoneInput
+            className="bg-transparent outline-none font-montserrat text-lg w-full font-semibold text-white"
+            defaultCountry="AE"
+            placeholder="Enter Phone Number"
+            value={value}
+            onChange={(e) => setValue!(name, e, { shouldValidate: true })}
           />
         );
 

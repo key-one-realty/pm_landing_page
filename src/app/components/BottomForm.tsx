@@ -10,6 +10,7 @@ import { useApiStore } from "../store/apiStore";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { useURLParams } from "../utils/customHooks";
 import LoadingFallback from "./shared/LoadingFallback";
+import { getPhoneDetails } from "../utils/utils";
 
 type BottomFormValues = {
   name: string;
@@ -25,6 +26,7 @@ const BottomForm = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<BottomFormValues>({
     defaultValues: {
@@ -53,6 +55,7 @@ const BottomForm = () => {
   const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
 
   const handleSubmitContactReq = async (data: BottomFormValues) => {
+    const { areaCode, countryCode, mobileNumber } = getPhoneDetails(data.phone);
     const name = data.name.split(" ");
     const firstName = name[0];
     const familyName = name[1];
@@ -60,7 +63,7 @@ const BottomForm = () => {
       ...calculatedFormPayload,
       firstName: firstName,
       familyName: familyName,
-      mobilePhone: data.phone,
+      mobilePhone: mobileNumber,
       email: data.email,
       remarks: data.message + " / " + campaignUTMURL,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
@@ -68,6 +71,8 @@ const BottomForm = () => {
       budget2: "",
       campaignSource: campaignSource,
       campaignMedium: campaignMedium,
+      mobileCountryCode: countryCode,
+      mobileAreaCode: areaCode,
     };
 
     await mutateAsync(payload);
@@ -124,6 +129,9 @@ const BottomForm = () => {
               error={errors}
               fieldOptions={{ required: "Phone is required!" }}
               name="phone"
+              value={formValues.phone}
+              setValue={setValue}
+              inputType="phone"
               placeholder="Phone"
             />
             <BottomFormInput

@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useApiStore } from "../store/apiStore";
 import { sendGTMEvent } from "@next/third-parties/google";
 import LoadingFallback from "./shared/LoadingFallback";
+import { getPhoneDetails } from "../utils/utils";
 
 const PopupForm = () => {
   const popupFormRef = useRef<HTMLDivElement | null>(null);
@@ -27,6 +28,7 @@ const PopupForm = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<PopupFormInputs>({
     defaultValues: {
@@ -56,6 +58,9 @@ const PopupForm = () => {
   });
 
   const handlePopupFormRequest = async (data: PopupFormInputs) => {
+    const { areaCode, countryCode, mobileNumber } = getPhoneDetails(
+      data.phone_number
+    );
     const name = data.fullName.split(" ");
     const firstName = name[0];
     const familyName = name[1];
@@ -63,7 +68,7 @@ const PopupForm = () => {
       ...calculatedFormPayload,
       firstName: firstName,
       familyName: familyName,
-      mobilePhone: data.phone_number,
+      mobilePhone: mobileNumber,
       email: data.email,
       remarks: data.comments + " / " + campaignUTMURL,
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
@@ -71,7 +76,13 @@ const PopupForm = () => {
       budget2: "",
       campaignSource: campaignSource,
       campaignMedium: campaignMedium,
+      mobileAreaCode: areaCode,
+      mobileCountryCode: countryCode,
     };
+
+    console.log(
+      `Country Code: ${countryCode}, Area Code: ${areaCode}, Mobile Number: ${mobileNumber}`
+    );
 
     await mutateAsync(payload);
     setShowStatus(true);
@@ -164,6 +175,8 @@ const PopupForm = () => {
               inputIcon="/icons/phone_number.svg"
               name="phone_number"
               placeholder="Phone Number"
+              inputType="phone"
+              setValue={setValue}
               register={register}
               value={formValues.phone_number}
               fieldOptions={{ required: "Phone Number is required!" }}
