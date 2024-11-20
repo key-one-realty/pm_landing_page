@@ -62,7 +62,6 @@ const FormInput = ({
         return (
           <select
             aria-placeholder={placeholder}
-            value={placeholder}
             required
             className={`form-input ${
               value != "" &&
@@ -72,7 +71,7 @@ const FormInput = ({
             }`}
             {...register(name, fieldOptions)}
           >
-            <option value={""} disabled hidden>
+            <option value={""} disabled>
               {placeholder}
             </option>
             {options &&
