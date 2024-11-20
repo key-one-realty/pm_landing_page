@@ -70,7 +70,7 @@ export const calculatedFormPayload =
     compaignMedium: "",
     company: "",
     numberOfEmployee: "",
-    leadStageId: "",
+    leadStageId: "2",
     activityDate: "",
     activityTime: "",
     activityTypeId: "",
