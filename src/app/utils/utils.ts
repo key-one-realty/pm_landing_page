@@ -13,5 +13,5 @@ export const getPhoneDetails = (phone: string) => {
     const areaCode = phoneNumberSplit[0];
     const mobileNumber = phoneNumberSplit.slice(1).join(" ");
 
-    return { countryCode, areaCode, mobileNumber }
+    return { countryCode, areaCode, mobileNumber, formattedPhoneNumber }
 }

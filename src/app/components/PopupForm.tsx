@@ -61,9 +61,8 @@ const PopupForm = () => {
   });
 
   const handlePopupFormRequest = async (data: PopupFormInputs) => {
-    const { areaCode, countryCode, mobileNumber } = getPhoneDetails(
-      data.phone_number
-    );
+    const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
+      getPhoneDetails(data.phone_number);
     const name = data.fullName.split(" ");
     const firstName = name[0];
     const familyName = name[1];
@@ -83,14 +82,18 @@ const PopupForm = () => {
       mobileCountryCode: countryCode,
     };
 
-    console.log(
-      `Country Code: ${countryCode}, Area Code: ${areaCode}, Mobile Number: ${mobileNumber}`
-    );
+    // console.log(
+    //   `Country Code: ${countryCode}, Area Code: ${areaCode}, Mobile Number: ${mobileNumber}`
+    // );
 
     await mutateAsync(payload);
     if (!zapSent) {
       await sendZap({
         email: data.email,
+        firstName: firstName,
+        lastName: familyName,
+        fullName: `${firstName}${familyName && " " + familyName}`,
+        phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
       });
     }
 

@@ -57,7 +57,8 @@ const BottomForm = () => {
   const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
 
   const handleSubmitContactReq = async (data: BottomFormValues) => {
-    const { areaCode, countryCode, mobileNumber } = getPhoneDetails(data.phone);
+    const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
+      getPhoneDetails(data.phone);
     const name = data.name.split(" ");
     const firstName = name[0];
     const familyName = name[1];
@@ -82,6 +83,10 @@ const BottomForm = () => {
     if (!zapSent) {
       await sendZap({
         email: data.email,
+        firstName: firstName,
+        lastName: familyName,
+        fullName: `${firstName}${familyName && " " + familyName}`,
+        phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
       });
     }
     setShowStatus(true);

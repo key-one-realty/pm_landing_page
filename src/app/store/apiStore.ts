@@ -38,8 +38,14 @@ export const useApiStore = create<useApiStoreState>()(
     sendZap: async (data: any) => {
         try {
             let url = "https://hooks.zapier.com/hooks/catch/14438499/2r1pn7n"
+            let first = true;
             for(const [key, value] of Object.entries(data)){
-                url += `?${key}=${value}`;
+                if(first){
+                    url += `?${key}=${value}`;
+                    first = false;
+                } else {
+                    url += `&${key}=${value}`;
+                }
             }
             const invokeZap = await axios.get(url)
 

@@ -180,6 +180,10 @@ const HeaderForm = () => {
     if (!zapSent) {
       await sendZap({
         email: data.email,
+        firstName: "Landlord",
+        fullName: "Landlord",
+        lastName: "",
+        phoneNumber: "",
       });
     }
   };
