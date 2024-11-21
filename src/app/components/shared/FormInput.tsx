@@ -101,7 +101,7 @@ const FormInput = ({
       case "phone":
         return (
           <PhoneInput
-            className="bg-transparent outline-none font-montserrat text-lg w-full font-semibold text-white"
+            className="bg-transparent outline-none font-montserrat text-lg w-full font-semibold mix-blend-darken"
             defaultCountry="AE"
             placeholder="Enter Phone Number"
             value={value}
