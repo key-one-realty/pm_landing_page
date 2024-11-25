@@ -49,6 +49,8 @@ export interface ContactInsertRequest {
   budget2: string;
   requirementCountryID: string;
   existingClient: string;
+  compaignSource: string | null;
+  compaignMedium: string | null;
   campaignSource: string | null;
   campaignMedium: string | null;
   company: string;

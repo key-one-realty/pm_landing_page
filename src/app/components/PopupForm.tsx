@@ -78,6 +78,8 @@ const PopupForm = () => {
       budget2: "",
       campaignSource: campaignSource,
       campaignMedium: campaignMedium,
+      compaignSource: campaignSource,
+      compaignMedium: campaignMedium,
       mobileAreaCode: areaCode,
       mobileCountryCode: countryCode,
     };

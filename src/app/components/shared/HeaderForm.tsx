@@ -164,6 +164,8 @@ const HeaderForm = () => {
       budget2: maxBudget,
       campaignSource: campaignSource,
       campaignMedium: campaignMedium,
+      compaignSource: campaignSource,
+      compaignMedium: campaignMedium,
       mobilePhone: phoneNumber,
       mobileCountryCode: countryCode,
       telephoneCountryCode: countryCode,
