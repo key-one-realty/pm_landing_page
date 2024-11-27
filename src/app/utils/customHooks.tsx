@@ -54,8 +54,9 @@ export function useComponentStoreRef(
     (state) => state.setServiceSection
   );
 
+  const currentRef = ref.current;
+
   useEffect(() => {
-    const currentRef = ref.current;
     if (currentRef) {
       switch (pageSection) {
         case PageSections.HOME:
@@ -79,7 +80,7 @@ export function useComponentStoreRef(
     }
   }, [pageSection, ref]);
 
-  return;
+  return currentRef;
 }
 
 export function useDebounceValue(input: string, delay: number) {
@@ -102,12 +103,14 @@ export function useURLParams() {
   const [campaignSource, setCampaignSource] = useState<string>("");
   const [campaignMedium, setCampaignMedium] = useState<string>("");
   const [campaignUTMURL, setCampaignUTMURL] = useState<string>("");
+  const [campaignUTM, setCampaignUTM] = useState<string>("");
 
   const params = useSearchParams();
 
   useEffect(() => {
     const campaignSourceParam = params.get("utm_source");
     const campaignMediumParam = params.get("utm_medium");
+    const campaignUTMParam = params.get("utm_campaign");
 
     let campaignMetadataString = "\nCampaign Metadata => \n";
 
@@ -125,7 +128,11 @@ export function useURLParams() {
     if (campaignMediumParam) {
       setCampaignMedium(campaignMediumParam);
     }
+
+    if (campaignUTMParam) {
+      setCampaignUTM(campaignUTMParam);
+    }
   }, [params]);
 
-  return [campaignSource, campaignMedium, campaignUTMURL];
+  return { campaignSource, campaignMedium, campaignUTMURL, campaignUTM };
 }

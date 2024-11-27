@@ -54,7 +54,7 @@ const BottomForm = () => {
     },
   });
 
-  const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
+  const { campaignSource, campaignUTMURL, campaignUTM } = useURLParams();
 
   const handleSubmitContactReq = async (data: BottomFormValues) => {
     const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
@@ -73,9 +73,9 @@ const BottomForm = () => {
       budget: "",
       budget2: "",
       campaignSource: campaignSource,
-      campaignMedium: campaignMedium,
+      campaignMedium: campaignUTM,
       compaignSource: campaignSource,
-      compaignMedium: campaignMedium,
+      compaignMedium: campaignUTM,
       mobileCountryCode: countryCode,
       mobileAreaCode: areaCode,
     };

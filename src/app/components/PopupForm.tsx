@@ -4,8 +4,7 @@ import ImageContainer from "./shared/ImageContainer";
 import FormInput from "./shared/FormInput";
 import CustomButton from "./shared/CustomButton";
 import { useComponentStore } from "../store/componentStore";
-import { useComponentStoreRef, useURLParams } from "../utils/customHooks";
-import { calculatedFormPayload, PageSections, RoomType } from "../utils/enums";
+import { calculatedFormPayload, RoomType } from "../utils/enums";
 import { ContactInsertRequest, PopupFormInputs } from "../utils/types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -13,17 +12,26 @@ import { useApiStore } from "../store/apiStore";
 import { sendGTMEvent } from "@next/third-parties/google";
 import LoadingFallback from "./shared/LoadingFallback";
 import { getPhoneDetails } from "../utils/utils";
+import { useURLParams } from "../utils/customHooks";
 
 const PopupForm = () => {
   const popupFormRef = useRef<HTMLDivElement | null>(null);
   const showPopUpForm = useComponentStore((state) => state.showPopupForm);
 
   const setShowPopupForm = useComponentStore((state) => state.setShowPopupForm);
+  const setPopupFormSection = useComponentStore(
+    (state) => state.setPopupFormSection
+  );
 
   const sendZap = useApiStore((state) => state.sendZap);
   const zapSent = useApiStore((state) => state.zapSent);
 
-  useComponentStoreRef(popupFormRef, PageSections.POPUPFORM);
+  // const ref = useComponentStoreRef(popupFormRef, PageSections.POPUPFORM);
+  useEffect(() => {
+    if (popupFormRef.current) {
+      setPopupFormSection(popupFormRef.current);
+    }
+  }, [popupFormRef.current]);
 
   const [showStatus, setShowStatus] = useState(false);
 
@@ -45,7 +53,7 @@ const PopupForm = () => {
 
   const formValues = watch();
 
-  const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
+  const { campaignSource, campaignUTMURL, campaignUTM } = useURLParams();
 
   const createContact = useApiStore((state) => state.createContact);
 
@@ -77,9 +85,9 @@ const PopupForm = () => {
       budget: "",
       budget2: "",
       campaignSource: campaignSource,
-      campaignMedium: campaignMedium,
+      campaignMedium: campaignUTM,
       compaignSource: campaignSource,
-      compaignMedium: campaignMedium,
+      compaignMedium: campaignUTM,
       mobileAreaCode: areaCode,
       mobileCountryCode: countryCode,
     };
