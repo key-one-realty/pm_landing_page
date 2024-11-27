@@ -51,6 +51,8 @@ export interface ContactInsertRequest {
   existingClient: string;
   campaignSource: string | null;
   campaignMedium: string | null;
+  compaignSource: string | null;
+  compaignMedium: string | null;
   company: string;
   numberOfEmployee: string;
   leadStageId: string;

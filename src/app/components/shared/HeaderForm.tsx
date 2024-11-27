@@ -50,7 +50,7 @@ const HeaderForm = () => {
 
   const formValues = watch();
 
-  const [campaignSource, campaignMedium, campaignUTMURL] = useURLParams();
+  const { campaignSource, campaignUTM, campaignUTMURL } = useURLParams();
 
   const createContact = useApiStore((state) => state.createContact);
 
@@ -65,6 +65,10 @@ const HeaderForm = () => {
       return propertyCalculatorReq;
     },
   });
+
+  const generateRandom = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
   const handleRentCalculation = () => {
     const earnings: earningsType = {
@@ -98,8 +102,7 @@ const HeaderForm = () => {
       const { min, max } =
         earnings[formValues.number_of_rooms.toLowerCase() as RoomType];
 
-      const estimatedEarnings =
-        Math.floor(Math.random() * (max - min + 1)) + min;
+      const estimatedEarnings = generateRandom(min, max);
 
       return estimatedEarnings;
     }
@@ -112,10 +115,6 @@ const HeaderForm = () => {
   };
 
   // console.log(campaignMetadata);
-
-  const generateRandom = (min: number, max: number) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
 
   const handleGenerateRandNumber = () => {
     const countryCodeMin = 10;
@@ -163,7 +162,9 @@ const HeaderForm = () => {
       budget: minBudget,
       budget2: maxBudget,
       campaignSource: campaignSource,
-      campaignMedium: campaignMedium,
+      campaignMedium: campaignUTM,
+      compaignSource: campaignSource,
+      compaignMedium: campaignUTM,
       mobilePhone: phoneNumber,
       mobileCountryCode: countryCode,
       telephoneCountryCode: countryCode,

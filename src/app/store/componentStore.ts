@@ -63,18 +63,20 @@ export const useComponentStore = create<ComponentStoreState>()(
         },
         setShowPopupForm: (show: boolean) => {
             set((state: any) => {
-                if(typeof window !== 'undefined'){
+                if(window){
                     if(show){
-                        document.body.style.overflow = "hidden"
                         const popupFormRef = state.popupFormSection;
                         
                         if(popupFormRef){
+                            document.body.style.overflow = "hidden"
                             popupFormRef.style.top = `${window.scrollY}px`;
                             popupFormRef.style.left = "0";
         
                             // console.log(`Pop Up form style: ${JSON.stringify(popupFormRef.style)}`);
+                        } else {
+                            console.log(`Popup form ref is undefined || null ${popupFormRef}`);
                             
-                        } 
+                        }
                     } else {
                         document.body.style.overflow = "auto";
                     }
