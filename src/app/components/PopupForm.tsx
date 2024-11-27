@@ -4,7 +4,7 @@ import ImageContainer from "./shared/ImageContainer";
 import FormInput from "./shared/FormInput";
 import CustomButton from "./shared/CustomButton";
 import { useComponentStore } from "../store/componentStore";
-import { calculatedFormPayload, PageSections, RoomType } from "../utils/enums";
+import { calculatedFormPayload, RoomType } from "../utils/enums";
 import { ContactInsertRequest, PopupFormInputs } from "../utils/types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
