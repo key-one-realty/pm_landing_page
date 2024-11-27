@@ -74,8 +74,6 @@ const BottomForm = () => {
       budget2: "",
       campaignSource: campaignSource,
       campaignMedium: campaignMedium,
-      compaignSource: campaignSource,
-      compaignMedium: campaignMedium,
       mobileCountryCode: countryCode,
       mobileAreaCode: areaCode,
     };
