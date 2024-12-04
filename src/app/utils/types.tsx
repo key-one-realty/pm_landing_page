@@ -1,5 +1,7 @@
 export type HeaderFormInputs = {
   location: string;
+  full_name: string;
+  phone_number: string;
   number_of_rooms: string;
   email: string;
 };
