@@ -105,7 +105,7 @@ const FormInput = ({
           <PhoneInput
             className="bg-transparent outline-none font-montserrat text-lg w-full font-semibold mix-blend-darken"
             defaultCountry="AE"
-            placeholder="Enter Phone Number"
+            placeholder={placeholder}
             value={value}
             onChange={(e) => setValue!(name, e, { shouldValidate: true })}
           />
