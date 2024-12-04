@@ -20,6 +20,7 @@ type FormInputForm = {
   value: any;
   fieldOptions?: RegisterOptions<any, string> | undefined;
   error?: FieldErrors<any>;
+  hideIcon?: boolean;
 };
 
 const FormInput = ({
@@ -33,6 +34,7 @@ const FormInput = ({
   fieldOptions,
   error,
   inputType = "text",
+  hideIcon = false,
 }: FormInputForm) => {
   const handleInputType = () => {
     switch (inputType) {
@@ -125,18 +127,20 @@ const FormInput = ({
   return (
     <div className="w-full">
       <div className="rounded-[10px] py-3 px-[18px] bg-form-input flex-between gap-6 w-full h-full relative">
-        <div
-          className={`w-fit ${
-            inputType == "textarea" && "flex justify-start items-start h-full"
-          } `}
-        >
-          <ImageContainer
-            src={inputIcon}
-            alt={`Icon for ${name} input field`}
-            w={24}
-            h={27}
-          />
-        </div>
+        {!hideIcon && (
+          <div
+            className={`w-fit ${
+              inputType == "textarea" && "flex justify-start items-start h-full"
+            } `}
+          >
+            <ImageContainer
+              src={inputIcon}
+              alt={`Icon for ${name} input field`}
+              w={24}
+              h={27}
+            />
+          </div>
+        )}
         <div className="w-11/12">{handleInputType()}</div>
       </div>
       {error && error[name] && (

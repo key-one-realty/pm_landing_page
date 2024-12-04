@@ -11,6 +11,8 @@ import { useApiStore } from "@/app/store/apiStore";
 import { useMutation } from "@tanstack/react-query";
 import { useURLParams } from "@/app/utils/customHooks";
 import LoadingFallback from "./LoadingFallback";
+import { getPhoneDetails } from "@/app/utils/utils";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 type RoomType =
   | "studio"
@@ -42,6 +44,8 @@ const HeaderForm = () => {
     defaultValues: {
       email: "",
       location: "",
+      full_name: "",
+      phone_number: "",
       number_of_rooms: "Number of Rooms",
     },
   });
@@ -116,24 +120,30 @@ const HeaderForm = () => {
 
   // console.log(campaignMetadata);
 
-  const handleGenerateRandNumber = () => {
-    const countryCodeMin = 10;
-    const countryCodeMax = 999;
+  // const handleGenerateRandNumber = () => {
+  //   const countryCodeMin = 10;
+  //   const countryCodeMax = 999;
 
-    const phoneNumberMin = 100000000;
-    const phoneNumberMax = 999999999;
+  //   const phoneNumberMin = 100000000;
+  //   const phoneNumberMax = 999999999;
 
-    const randomCountryCode = generateRandom(countryCodeMin, countryCodeMax);
+  //   const randomCountryCode = generateRandom(countryCodeMin, countryCodeMax);
 
-    const randomPhoneNumber = generateRandom(phoneNumberMin, phoneNumberMax);
+  //   const randomPhoneNumber = generateRandom(phoneNumberMin, phoneNumberMax);
 
-    return {
-      countryCode: `${randomCountryCode}`,
-      phoneNumber: `${randomPhoneNumber}`,
-    };
-  };
+  //   return {
+  //     countryCode: `${randomCountryCode}`,
+  //     phoneNumber: `${randomPhoneNumber}`,
+  //   };
+  // };
 
   const handleCalculateEstimate = async (data: HeaderFormInputs) => {
+    const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
+      getPhoneDetails(data.phone_number);
+    const name = data.full_name.split(" ");
+    const firstName = name[0];
+    const familyName = name[1];
+
     const bedroom = String(
       calculatedFormPayload.bedroom[
         formValues.number_of_rooms.toLowerCase() as RoomType
@@ -152,10 +162,10 @@ const HeaderForm = () => {
       ].max
     );
 
-    const { countryCode, phoneNumber } = handleGenerateRandNumber();
-
     const payload: ContactInsertRequest = {
       ...calculatedFormPayload,
+      firstName: firstName,
+      familyName: familyName,
       email: data.email,
       remarks: `Hello, I am looking for a Property Management service for my property in ${data.location}. Email => ${data.email}, Number of rooms: ${data.number_of_rooms}. ${campaignUTMURL}`,
       bedroom: bedroom,
@@ -165,15 +175,18 @@ const HeaderForm = () => {
       campaignMedium: campaignUTM,
       compaignSource: campaignSource,
       compaignMedium: campaignUTM,
-      mobilePhone: phoneNumber,
+      mobilePhone: mobileNumber,
+      mobileAreaCode: areaCode,
       mobileCountryCode: countryCode,
       telephoneCountryCode: countryCode,
-      telephone: phoneNumber,
+      telephoneAreaCode: areaCode,
+      telephone: mobileNumber,
     };
 
     // console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
 
     await mutateAsync(payload);
+    sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
     if (isSuccess) {
       setShowStatus(true);
     }
@@ -181,10 +194,10 @@ const HeaderForm = () => {
     if (!zapSent) {
       await sendZap({
         email: data.email,
-        firstName: "Landlord",
-        fullName: "Landlord",
+        firstName: firstName,
         lastName: "",
-        phoneNumber: "",
+        fullName: `${firstName}${familyName && " " + familyName}`,
+        phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
       });
     }
   };
@@ -227,6 +240,32 @@ const HeaderForm = () => {
           />
           <div className="w-full flex-center-col lg:flex-row gap-[14px]">
             <FormInput
+              inputIcon="/icons/email.svg"
+              name="full_name"
+              placeholder="Full Name"
+              inputType="text"
+              register={register}
+              value={formValues.full_name}
+              fieldOptions={{ required: "Full Name is required!" }}
+              error={errors}
+            />
+            <div className="w-full lg:w-[48.5%]">
+              <FormInput
+                inputIcon="/icons/phone_number.svg"
+                name="phone_number"
+                placeholder="Phone number"
+                inputType="phone"
+                register={register}
+                setValue={setValue}
+                value={formValues.phone_number}
+                fieldOptions={{ required: "Phone Number is required!" }}
+                error={errors}
+                hideIcon
+              />
+            </div>
+          </div>
+          <div className="w-full flex-center-col lg:flex-row gap-[14px]">
+            <FormInput
               inputIcon="/icons/house.svg"
               name="number_of_rooms"
               placeholder="Number of Rooms"
@@ -245,9 +284,9 @@ const HeaderForm = () => {
               error={errors}
             />
             <FormInput
-              inputIcon="/icons/email.svg"
+              inputIcon="/icons/email_address.svg"
               name="email"
-              placeholder="Enter Your Email Address"
+              placeholder="Email Address"
               register={register}
               value={formValues.email}
               fieldOptions={{ required: "Email Address is required!" }}
