@@ -231,7 +231,7 @@ const HeaderForm = () => {
             inputIcon="/icons/map.svg"
             name="location"
             inputType="location"
-            placeholder="Enter Location of Your Property"
+            placeholder="Location of Your Property"
             register={register}
             setValue={setValue}
             value={formValues.location}
@@ -249,7 +249,7 @@ const HeaderForm = () => {
               fieldOptions={{ required: "Full Name is required!" }}
               error={errors}
             />
-            <div className="w-full lg:w-[48.5%]">
+            <div className="w-full">
               <FormInput
                 inputIcon="/icons/phone_number.svg"
                 name="phone_number"
