@@ -96,18 +96,20 @@ const PopupForm = () => {
     //   `Country Code: ${countryCode}, Area Code: ${areaCode}, Mobile Number: ${mobileNumber}`
     // );
 
-    await mutateAsync(payload);
-    if (!zapSent) {
-      await sendZap({
-        email: data.email,
-        firstName: firstName,
-        lastName: familyName,
-        fullName: `${firstName}${familyName && " " + familyName}`,
-        phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
-      });
-    }
+    if (!isPending && !isSuccess) {
+      await mutateAsync(payload);
+      if (!zapSent) {
+        await sendZap({
+          email: data.email,
+          firstName: firstName,
+          lastName: familyName,
+          fullName: `${firstName}${familyName && " " + familyName}`,
+          phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
+        });
+      }
 
-    setShowStatus(true);
+      setShowStatus(true);
+    }
   };
 
   useEffect(() => {
@@ -116,7 +118,7 @@ const PopupForm = () => {
       timeout = setTimeout(() => {
         setShowStatus(false);
         setShowPopupForm(false);
-      }, 5000);
+      }, 2000);
     }
 
     return () => {
@@ -172,7 +174,7 @@ const PopupForm = () => {
             </span>
           )}
           <form
-            className="h-full w-full lg:w-5/12 flex-center-col gap-[6.87px]"
+            className="h-full w-full lg:w-5/12 flex-center-col gap-[10px]"
             onSubmit={handleSubmit(handlePopupFormRequest)}
           >
             <FormInput
@@ -190,7 +192,13 @@ const PopupForm = () => {
               placeholder="Email Address"
               register={register}
               value={formValues.email}
-              fieldOptions={{ required: "Email address is required!" }}
+              fieldOptions={{
+                required: "Email address is required!",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Invalid email address",
+                },
+              }}
               error={errors}
             />
             <FormInput

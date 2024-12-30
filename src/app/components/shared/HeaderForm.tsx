@@ -184,21 +184,22 @@ const HeaderForm = () => {
     };
 
     // console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
+    if (!isPending && !isSuccess) {
+      await mutateAsync(payload);
+      sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
+      if (isSuccess) {
+        setShowStatus(true);
+      }
 
-    await mutateAsync(payload);
-    sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
-    if (isSuccess) {
-      setShowStatus(true);
-    }
-
-    if (!zapSent) {
-      await sendZap({
-        email: data.email,
-        firstName: firstName,
-        lastName: "",
-        fullName: `${firstName}${familyName && " " + familyName}`,
-        phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
-      });
+      if (!zapSent) {
+        await sendZap({
+          email: data.email,
+          firstName: firstName,
+          lastName: "",
+          fullName: `${firstName}${familyName && " " + familyName}`,
+          phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
+        });
+      }
     }
   };
 
@@ -238,7 +239,7 @@ const HeaderForm = () => {
             fieldOptions={{ required: "Location is required!" }}
             error={errors}
           />
-          <div className="w-full flex-center-col lg:flex-row gap-[14px]">
+          <div className="w-full flex-center-col xl:flex-row gap-[14px]">
             <FormInput
               inputIcon="/icons/email.svg"
               name="full_name"
@@ -249,20 +250,18 @@ const HeaderForm = () => {
               fieldOptions={{ required: "Full Name is required!" }}
               error={errors}
             />
-            <div className="w-full">
-              <FormInput
-                inputIcon="/icons/phone_number.svg"
-                name="phone_number"
-                placeholder="Phone number"
-                inputType="phone"
-                register={register}
-                setValue={setValue}
-                value={formValues.phone_number}
-                fieldOptions={{ required: "Phone Number is required!" }}
-                error={errors}
-                hideIcon
-              />
-            </div>
+            <FormInput
+              inputIcon="/icons/phone_number.svg"
+              name="phone_number"
+              placeholder="Phone number"
+              inputType="phone"
+              register={register}
+              setValue={setValue}
+              value={formValues.phone_number}
+              fieldOptions={{ required: "Phone Number is required!" }}
+              error={errors}
+              hideIcon
+            />
           </div>
           <div className="w-full flex-center-col lg:flex-row gap-[14px]">
             <FormInput
@@ -289,7 +288,13 @@ const HeaderForm = () => {
               placeholder="Email Address"
               register={register}
               value={formValues.email}
-              fieldOptions={{ required: "Email Address is required!" }}
+              fieldOptions={{
+                required: "Email Address is required!",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Invalid email address",
+                },
+              }}
               error={errors}
             />
           </div>

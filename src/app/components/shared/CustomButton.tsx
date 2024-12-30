@@ -10,7 +10,11 @@ type CustomButtonProps = {
 const CustomButton = ({ btnName, isPending, onClick }: CustomButtonProps) => {
   return (
     <div className="w-full flex-center gap-2 py-3 px-1 rounded-[15px] bg-button text-xl font-bold">
-      <button onClick={onClick} className="capitalize w-11/12">
+      <button
+        disabled={isPending}
+        onClick={onClick}
+        className="capitalize w-11/12"
+      >
         {btnName}
       </button>
       {isPending && (
