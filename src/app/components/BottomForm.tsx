@@ -80,18 +80,20 @@ const BottomForm = () => {
       mobileAreaCode: areaCode,
     };
 
-    await mutateAsync(payload);
+    if (!isPending) {
+      await mutateAsync(payload);
 
-    if (!zapSent) {
-      await sendZap({
-        email: data.email,
-        firstName: firstName,
-        lastName: familyName,
-        fullName: `${firstName}${familyName && " " + familyName}`,
-        phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
-      });
+      if (!zapSent) {
+        await sendZap({
+          email: data.email,
+          firstName: firstName,
+          lastName: familyName,
+          fullName: `${firstName}${familyName && " " + familyName}`,
+          phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
+        });
+      }
+      setShowStatus(true);
     }
-    setShowStatus(true);
   };
 
   useEffect(() => {
@@ -134,7 +136,13 @@ const BottomForm = () => {
             <BottomFormInput
               register={register}
               error={errors}
-              fieldOptions={{ required: "Email is required!" }}
+              fieldOptions={{
+                required: "Email is required!",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Invalid email address",
+                },
+              }}
               name="email"
               placeholder="Email"
             />
