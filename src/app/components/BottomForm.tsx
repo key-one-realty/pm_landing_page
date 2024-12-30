@@ -80,7 +80,7 @@ const BottomForm = () => {
       mobileAreaCode: areaCode,
     };
 
-    if (!isPending) {
+    if (!isPending && !isSuccess) {
       await mutateAsync(payload);
 
       if (!zapSent) {

@@ -96,7 +96,7 @@ const PopupForm = () => {
     //   `Country Code: ${countryCode}, Area Code: ${areaCode}, Mobile Number: ${mobileNumber}`
     // );
 
-    if (!isPending) {
+    if (!isPending && !isSuccess) {
       await mutateAsync(payload);
       if (!zapSent) {
         await sendZap({

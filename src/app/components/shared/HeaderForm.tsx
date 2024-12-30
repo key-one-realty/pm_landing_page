@@ -184,7 +184,7 @@ const HeaderForm = () => {
     };
 
     // console.log(`Create Contact Payload: ${JSON.stringify(payload)}`);
-    if (!isPending) {
+    if (!isPending && !isSuccess) {
       await mutateAsync(payload);
       sendGTMEvent({ event: "pm_cta_trigger", value: "true" });
       if (isSuccess) {
