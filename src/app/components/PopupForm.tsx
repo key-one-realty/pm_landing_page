@@ -174,7 +174,7 @@ const PopupForm = () => {
             </span>
           )}
           <form
-            className="h-full w-full lg:w-5/12 flex-center-col gap-[10px]"
+            className="h-full w-full lg:w-5/12 flex-center-col gap-[10px] 2xl:gap-[6.67px]"
             onSubmit={handleSubmit(handlePopupFormRequest)}
           >
             <FormInput
