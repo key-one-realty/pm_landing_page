@@ -125,7 +125,7 @@ const FormInput = ({
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full">
       <div
         className={`rounded-[10px] py-3 px-[18px] bg-form-input flex-between gap-6 w-full h-full relative ${
           inputType !== "textarea" && "max-h-14"
