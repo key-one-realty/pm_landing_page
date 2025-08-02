@@ -55,7 +55,7 @@ const FormInput = ({
             {...register(name, fieldOptions)}
             placeholder={placeholder}
             name={name}
-            rows={5}
+            rows={2}
             className={`form-input ${value != "" && "text-secondary-black"}`}
           ></textarea>
         );

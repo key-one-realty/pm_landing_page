@@ -156,6 +156,7 @@ const PopupForm = () => {
               </h2>
               <p className="text-xl font-medium text-center">
                 Experience Elite Management with Key One{" "}
+                <br />
                 <span className="font-extrabold">
                   Ready to Elevate Your Investment Returns?
                 </span>
@@ -231,7 +232,7 @@ const PopupForm = () => {
               value={formValues.comments}
               error={errors}
             />
-            <CustomButton btnName="Submit" isPending={isPending} />
+            <CustomButton btnName="Enquire Now" isPending={isPending} />
           </form>
         </div>
       </div>
