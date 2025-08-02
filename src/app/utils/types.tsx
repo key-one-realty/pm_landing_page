@@ -64,3 +64,11 @@ export interface ContactInsertRequest {
   activitySubject: string;
   activityRemarks: string;
 }
+
+export type ContactFormInputs = {
+  full_name: string;
+  email: string;
+  phone_number: string;
+  property_type: string;
+  message: string;
+};

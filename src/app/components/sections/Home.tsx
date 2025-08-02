@@ -7,6 +7,7 @@ import RoundBlur from "../shared/RoundBlur";
 import { useComponentStore } from "@/app/store/componentStore";
 import { useObserver } from "@/app/utils/customHooks";
 import { PageSections } from "@/app/utils/enums";
+import ContactForm from "../shared/ContactForm";
 
 const HomeSection = () => {
   const homeRef = useRef<HTMLElement | null>(null);
@@ -98,7 +99,7 @@ const HomeSection = () => {
                   </p>
                 </div>
                 <Suspense>
-                  <HeaderForm />
+                  <ContactForm />
                 </Suspense>
               </div>
             </div>
