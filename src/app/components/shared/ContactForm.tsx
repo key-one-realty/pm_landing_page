@@ -103,7 +103,7 @@ const ContactForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-4 w-full max-w-lg mx-auto"
+      className="flex flex-col gap-4 w-full max-w-lg mx-auto mb-5"
       onSubmit={handleSubmit(onSubmit)}
     >
       {showStatus && isSuccess && (

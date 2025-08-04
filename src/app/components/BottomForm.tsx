@@ -165,7 +165,7 @@ const BottomForm = () => {
             />
           </div>
           <div className="w-full lg:w-5/12 2xl:w-6/12">
-            <CustomButton btnName="Send Message" isPending={isPending} />
+            <CustomButton btnName="Enquire Now" isPending={isPending} />
           </div>
         </form>
       </div>
