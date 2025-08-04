@@ -53,7 +53,7 @@ export default function ThankYouPage() {
                 <li>
                   💬{" "}
                   <a
-                    href="https://wa.me/971586075608"
+                    href="https://wa.me/97148946079"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-600 hover:underline"
