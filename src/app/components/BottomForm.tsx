@@ -11,6 +11,7 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import { useURLParams } from "../utils/customHooks";
 import LoadingFallback from "./shared/LoadingFallback";
 import { getPhoneDetails } from "../utils/utils";
+import { useRouter } from "next/navigation";
 
 type BottomFormValues = {
   name: string;
@@ -36,6 +37,7 @@ const BottomForm = () => {
       message: "",
     },
   });
+  const router = useRouter();
 
   const createContact = useApiStore((state) => state.createContact);
   const sendZap = useApiStore((state) => state.sendZap);
@@ -92,7 +94,7 @@ const BottomForm = () => {
           phoneNumber: `+${countryCode} ${formattedPhoneNumber}`,
         });
       }
-      setShowStatus(true);
+      router.push("/thank-you");
     }
   };
 
@@ -165,7 +167,7 @@ const BottomForm = () => {
             />
           </div>
           <div className="w-full lg:w-5/12 2xl:w-6/12">
-            <CustomButton btnName="Send Message" isPending={isPending} />
+            <CustomButton btnName="Enquire Now" isPending={isPending} />
           </div>
         </form>
       </div>

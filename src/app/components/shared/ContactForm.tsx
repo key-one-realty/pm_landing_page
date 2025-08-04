@@ -11,6 +11,8 @@ import { useURLParams } from "@/app/utils/customHooks";
 import { sendGTMEvent } from "@next/third-parties/google";
 import FormInput from "./FormInput";
 import CustomButton from "./CustomButton";
+import { useRouter } from "next/navigation";
+
 
 const ContactForm = () => {
   const {
@@ -28,6 +30,8 @@ const ContactForm = () => {
       message: "",
     },
   });
+
+  const router = useRouter();
 
   const formValues = watch();
   const [showStatus, setShowStatus] = useState(false);
@@ -87,7 +91,7 @@ const ContactForm = () => {
         });
       }
 
-      setShowStatus(true);
+      router.push("/thank-you");
     }
   };
 
