@@ -53,7 +53,7 @@ export default function ThankYouPage() {
                 <li>
                   💬{" "}
                   <a
-                    href="https://wa.me/971586075608"
+                    href="https://wa.me/97148946079"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-600 hover:underline"
@@ -77,7 +77,9 @@ export default function ThankYouPage() {
 
        
       </div>
-      <div className="w-full bg-black pb-4">
+      <div className="w-full bg-black pb-4 flex align-center justify-center p-4 text-white">
+        2024 Key One. All rights reserved.
+ 
       </div>
 
  
