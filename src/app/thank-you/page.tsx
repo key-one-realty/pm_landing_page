@@ -77,7 +77,9 @@ export default function ThankYouPage() {
 
        
       </div>
-      <div className="w-full bg-black pb-4">
+      <div className="w-full bg-black pb-4 flex align-center justify-center p-4 text-white">
+        2024 Key One. All rights reserved.
+ 
       </div>
 
  
