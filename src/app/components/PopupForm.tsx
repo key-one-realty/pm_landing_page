@@ -13,6 +13,7 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import LoadingFallback from "./shared/LoadingFallback";
 import { getPhoneDetails } from "../utils/utils";
 import { useURLParams } from "../utils/customHooks";
+import { useRouter } from "next/navigation";
 
 const PopupForm = () => {
   const popupFormRef = useRef<HTMLDivElement | null>(null);
@@ -22,6 +23,8 @@ const PopupForm = () => {
   const setPopupFormSection = useComponentStore(
     (state) => state.setPopupFormSection
   );
+
+  const router = useRouter();
 
   const sendZap = useApiStore((state) => state.sendZap);
   const zapSent = useApiStore((state) => state.zapSent);
@@ -108,7 +111,7 @@ const PopupForm = () => {
         });
       }
 
-      setShowStatus(true);
+      router.push("/thank-you");
     }
   };
 
