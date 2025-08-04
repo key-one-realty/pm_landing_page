@@ -48,7 +48,7 @@ export const calculatedFormPayload =
     mobilePhone: "123456",
     email: "",
     remarks: "",
-    requirementType: "91212",
+    requirementType: "91213",
     contactType: "4",
     countryID: "65946",
     telephoneCountryCode: "971",
