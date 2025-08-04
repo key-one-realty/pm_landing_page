@@ -111,7 +111,7 @@ const PopupForm = () => {
         });
       }
 
-      router.push("/thank-you");
+      router.push("/thank-you?utm_source=google&utm_medium=search&utm_campaign=pm");
     }
   };
 
