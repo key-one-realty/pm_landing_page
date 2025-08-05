@@ -27,13 +27,8 @@ const HomeSection = () => {
       ref={homeRef}
       className="header-container bg-secondary-black max-w-full max-h-full lg:h-[120svh] 2xl:h-svh relative"
     >
-      <RoundBlur
-        w="328px"
-        h="328px"
-        opacity="0.25"
-        background="black"
-        className="top-[324px] -left-16"
-      />
+      
+
       <RoundBlur
         w="328px"
         h="328px"
@@ -46,12 +41,12 @@ const HomeSection = () => {
         opacity="0.15"
         className="-bottom-60 -right-40"
       />
-      <div className="w-full min-h-svh  lg:flex lg:justify-between lg:items-center lg:flex-col">
+      <div className="w-full min-h-svh  lg:flex lg:justify-between lg:items-center lg:flex-col lg:gap-0 relative">
         <Navbar />
         <div className="lg:hidden absolute overlay top-0 left-0 w-full h-full"></div>
 
-        <div className="main-content flex-center">
-          <div className="z-10 relative w-full h-fit gap-20 lg:gap-0 lg:w-10/12 2xl:w-8/12 flex-col-start-between flex-col justify-evenly lg:justify-between lg:items-end lg:flex-row-reverse pb-20">
+        <div className="main-content flex-center pb-20">
+          <div className="z-10 relative w-full h-fit gap-20 lg:gap-0 lg:w-10/12 2xl:w-8/12 flex-col-start-between flex-col justify-evenly lg:justify-between lg:items-end lg:flex-row-reverse pb-10 ">
             <div className="awards-container flex-center flex-col justify-end gap-4 w-[170px] lg:w-[194px] h-[50.972vh] lg:h-[95%] 2xl:h-full">
               <div className="award-imgs flex-between gap-4 lg:gap-8">
                 <ImageContainer
@@ -84,7 +79,7 @@ const HomeSection = () => {
             <div className="form-container flex-center w-full lg:w-6/12 2xl:w-5/12 h-full">
               <div className="w-11/12 lg:w-full flex-between justify-evenly flex-col lg:max-h-svh h-full gap-8 lg:gap-9 2xl:gap-8">
                 <div className="form-header text-white flex-center flex-col gap-4 lg:gap-6">
-                  <h1 className="text-4xl lg:text-6xl font-black font-montserrat">
+                  <h1 className="text-4xl lg:text-5xl font-black font-montserrat pt-[50]">
                     Unlock Your Property&apos;s Full Income Potential
                   </h1>
                   <p className="font-medium">
