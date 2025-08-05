@@ -45,6 +45,7 @@ const HomeSection = () => {
         <Navbar />
         <div className="lg:hidden absolute overlay top-0 left-0 w-full h-full"></div>
 
+
         <div className="main-content flex-center pb-20">
           <div className="z-10 relative w-full h-fit gap-20 lg:gap-0 lg:w-10/12 2xl:w-8/12 flex-col-start-between flex-col justify-evenly lg:justify-between lg:items-end lg:flex-row-reverse pb-10 ">
             <div className="awards-container flex-center flex-col justify-end gap-4 w-[170px] lg:w-[194px] h-[50.972vh] lg:h-[95%] 2xl:h-full">
