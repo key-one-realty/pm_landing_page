@@ -18,9 +18,7 @@ export default function Home() {
       <Suspense fallback={<LoadingFallback />}>
         <PopupForm />
       </Suspense>
-
       <HomeSection />
-
       <a
         href="https://wa.me/97148946079?text=Hi%20I%20am%20interested"
         target="_blank"
@@ -39,14 +37,34 @@ export default function Home() {
           }}
         />
       </a>
-
       <section className="odometer my-14 lg:my-20 w-full flex-center">
         <div className="odometer-values flex-center lg:justify-between flex-wrap gap-12 gap-y-7 w-10/12 2xl:w-8/12">
-          <OdometerText value="95" description="Occupancy Rate" suffixSymbol="%" />
-          <OdometerText value="24" valueDenominator="7" description="Maintenance Support" />
-          <OdometerText value="30" description="Increased Income" suffixSymbol="%" />
-          <OdometerText value="18" description="Years of Excellence" suffixSymbol="+" />
-          <OdometerText value="2000" description="Properties Managed" suffixSymbol="+" />
+          <OdometerText
+            value="95"
+            description="Occupancy Rate"
+            suffixSymbol="%"
+          />
+          <OdometerText
+            value="24"
+            valueDenominator="7"
+            description="Maintenance Support"
+            suffixSymbol=""
+          />
+          <OdometerText
+            value="30"
+            description="Increased Income"
+            suffixSymbol="%"
+          />
+          <OdometerText
+            value="18"
+            description="Years of Excellence"
+            suffixSymbol="+"
+          />
+          <OdometerText
+            value="2000"
+            description="Properties Managed"
+            suffixSymbol="+"
+          />
         </div>
       </section>
 
@@ -80,8 +98,13 @@ export default function Home() {
       <ServiceSection />
 
       <section className="landlord_connect_mockup flex-center flex-col mt-12 gap-6 relative">
-        <RoundBlur w="412px" h="414px" opacity="0.15" className="top-40 -left-20" />
-        <div>
+        <RoundBlur
+          w="412px"
+          h="414px"
+          opacity="0.15"
+          className="top-40 -left-20"
+        />
+        <div className="">
           <h2 className="text-4xl font-bold text-center mb-[220px] lg:mb-[294px]">
             Landlord Connect
           </h2>
@@ -90,7 +113,7 @@ export default function Home() {
         <div className="mockup-container flex flex-col lg:flex-row justify-end items-center mb-2 relative h-[505px] lg:h-[248px] w-[91.372vw] lg:w-9/12 2xl:w-8/12">
           <div className="absolute -top-[50%] left-0 lg:hidden">
             <ImageContainer
-              src="/mockup_sm.png"
+              src={"/mockup_sm.png"}
               alt="Landlord Connect Mockup"
               fill
               className="w-[91.372vw] h-[53.528vh] object-contain"
@@ -99,7 +122,7 @@ export default function Home() {
 
           <div className="hidden lg:flex">
             <ImageContainer
-              src="/mockup.png"
+              src={"/mockup.png"}
               alt="Landlord Connect Mockup"
               fill
               className="w-[40svw] -ml-28 2xl:object-[70%] h-[737px] object-contain -mt-[360px]"
@@ -135,19 +158,38 @@ export default function Home() {
             Strategic Partnerships with Premier Marketing Platforms
           </p>
         </div>
-
         <div className="grid grid-cols-2 lg:grid-cols-4 lg:w-10/12 2xl:w-8/12 items-center justify-center gap-6 lg:gap-12 w-full lg:justify-between">
           <div className="flex-center lg:justify-start">
-            <ImageContainer src="/icons/dubai_tourism.svg" alt="Dubai Tourism" w={126} h={78} />
+            <ImageContainer
+              src="/icons/dubai_tourism.svg"
+              alt="Dubai Tourism"
+              w={126}
+              h={78}
+            />
           </div>
           <div className="flex-center lg:justify-evenly">
-            <ImageContainer src="/icons/flipkey_review.svg" alt="Keyone is recommended on flipkey" w={145} h={78} />
+            <ImageContainer
+              src="/icons/flipkey_review.svg"
+              alt="Keyone is recommended on flipkey"
+              w={145}
+              h={78}
+            />
           </div>
           <div className="flex-center lg:justify-evenly">
-            <ImageContainer src="/icons/flipkey_rated.svg" alt="Keyone is rated excellent on flipkey" w={126} h={135} />
+            <ImageContainer
+              src="/icons/flipkey_rated.svg"
+              alt="Keyone is rated excellent on flipkey"
+              w={126}
+              h={135}
+            />
           </div>
           <div className="flex-center lg:justify-end">
-            <ImageContainer src="/icons/airbnb.svg" alt="Keyone is verified on airbnb" w={150} h={113} />
+            <ImageContainer
+              src="/icons/airbnb.svg"
+              alt="Keyone is verified on airbnb"
+              w={150}
+              h={113}
+            />
           </div>
         </div>
       </section>
