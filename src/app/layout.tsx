@@ -15,11 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* Google Tag Manager */}
-      <GoogleTagManager gtmId="GTM-WXPWNV38" /> {/* <-- Replace with your new GTM ID */}
+      <GoogleTagManager gtmId="GTM-WXPWNV38" /> 
       <body className="font-montserrat antialiased">
         <Provider>{children}</Provider>
-        {/* The GTM <noscript> iframe is automatically added by this component */}
+        
       </body>
     </html>
   );
