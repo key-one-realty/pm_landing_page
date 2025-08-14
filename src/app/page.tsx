@@ -19,6 +19,24 @@ export default function Home() {
         <PopupForm />
       </Suspense>
       <HomeSection />
+      <a
+        href="https://wa.me/97148946079?text=Hi%20I%20am%20interested"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp Chat"
+          style={{
+            width: "60px",
+            height: "60px",
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 999,
+          }}
+        />
+      </a>
       <section className="odometer my-14 lg:my-20 w-full flex-center">
         <div className="odometer-values flex-center lg:justify-between flex-wrap gap-12 gap-y-7 w-10/12 2xl:w-8/12">
           <OdometerText
