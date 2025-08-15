@@ -6,9 +6,9 @@ export async function POST(req: Request) {
     const { fullName, email, phone_number, property_type, comments } = await req.json();
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com", // or your SMTP server
-      port: 587,
-      secure: false,
+      host: "smtp.office365.com", // or your SMTP server
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.MAIL_FROM_ADDRESS, // your email
         pass: process.env.MAIL_PASSWORD, // app password or email password
@@ -16,8 +16,8 @@ export async function POST(req: Request) {
     });
 
     await transporter.sendMail({
-      from: `"Website Form" <${process.env.MAIL_FROM_ADDRESS}>`,
-      to: "leads@keyone.com",
+      from: `"Website Form" <${process.env.SMTP_USER}>`,
+      to: "abdelrahman@keyone.com",
       subject: "New Popup Form Submission",
       text: `
         Name: ${fullName}
