@@ -98,6 +98,13 @@ const PopupForm = () => {
     // console.log(
     //   `Country Code: ${countryCode}, Area Code: ${areaCode}, Mobile Number: ${mobileNumber}`
     // );
+      try {
+    // Send email
+    await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
     if (!isPending && !isSuccess) {
       await mutateAsync(payload);
@@ -118,6 +125,9 @@ const PopupForm = () => {
       });
 
       router.push("/thank-you?utm_source=google&utm_medium=search&utm_campaign=pm");
+    }
+    } catch (err) {
+      console.error("Form submission failed", err);
     }
   };
 
