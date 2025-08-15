@@ -15,10 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* Google Tag Manager */}
       <GoogleTagManager gtmId="GTM-WXPWNV38" /> 
       <body className="font-montserrat antialiased">
         <Provider>{children}</Provider>
+        
       </body>
     </html>
   );
