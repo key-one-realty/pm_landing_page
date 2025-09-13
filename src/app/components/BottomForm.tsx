@@ -59,6 +59,7 @@ const BottomForm = () => {
   const { campaignSource, campaignUTMURL, campaignUTM } = useURLParams();
 
   const handleSubmitContactReq = async (data: BottomFormValues) => {
+    const searchParams = new URLSearchParams(window.location.search);
     const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
       getPhoneDetails(data.phone);
     const name = data.name.split(" ");
@@ -74,12 +75,14 @@ const BottomForm = () => {
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",
       budget2: "",
-      campaignSource: campaignSource,
-      campaignMedium: campaignUTM,
       compaignSource: campaignSource,
       compaignMedium: campaignUTM,
       mobileCountryCode: countryCode,
       mobileAreaCode: areaCode,
+
+      utmCampaignName: searchParams.get("utm_campaign") || undefined,
+      utmContent: searchParams.get("utm_content") || undefined,
+      utmTerm: searchParams.get("utm_term") || undefined,
     };
 
     if (!isPending && !isSuccess) {

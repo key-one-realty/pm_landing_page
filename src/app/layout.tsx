@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId="GTM-WXPWNV38" /> 
-      <body className="font-montserrat antialiased">
+      <body className="font-montserrat antialiased" suppressHydrationWarning={true}>
         <Provider>{children}</Provider>
         
       </body>

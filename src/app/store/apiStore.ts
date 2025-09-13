@@ -24,9 +24,9 @@ export const useApiStore = create<useApiStoreState>()(
                 acc[key] = String(value);
                 return acc;
               }, {} as Record<string, string>)).toString()
-            const createContact = await makeRequest("/ContactInsert", { method: "POST",  data: formBody})
+            const createContact = await makeRequest("/ContactInsertUtm", { method: "POST",  data: formBody})
 
-            // console.log(`Response: ${createContact}`);
+            console.log(`Response: ${createContact}`);
             
 
             return createContact

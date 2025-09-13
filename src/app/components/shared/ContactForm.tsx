@@ -49,6 +49,7 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: ContactFormInputs) => {
+    const searchParams = new URLSearchParams(window.location.search);
     const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
       getPhoneDetails(data.phone_number);
 
@@ -65,16 +66,18 @@ const ContactForm = () => {
       bedroom: "", // optional, no room info in this form
       budget: "",
       budget2: "",
-      campaignSource,
-      campaignMedium: campaignUTM,
-      compaignSource: campaignSource,
       compaignMedium: campaignUTM,
+      compaignSource: campaignSource,
       mobilePhone: mobileNumber,
       mobileAreaCode: areaCode,
       mobileCountryCode: countryCode,
       telephoneCountryCode: countryCode,
       telephoneAreaCode: areaCode,
       telephone: mobileNumber,
+
+      utmCampaignName: searchParams.get("utm_campaign") || undefined,
+      utmContent: searchParams.get("utm_content") || undefined,
+      utmTerm: searchParams.get("utm_term") || undefined,
     };
 
     if (!isPending && !isSuccess) {
@@ -91,13 +94,13 @@ const ContactForm = () => {
         });
       }
 
-      await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      // await fetch("/api/send-email", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data),
+      // });
 
-      router.push("/thank-you?utm_source=google&utm_medium=search&utm_campaign=pm");
+      // router.push("/thank-you?utm_source=google&utm_medium=search&utm_campaign=pm");
     }
   };
 
@@ -185,8 +188,6 @@ const ContactForm = () => {
         register={register}
         value={formValues.message}
         setValue={setValue}
-        fieldOptions={{ required: "Message is required" }}
-        error={errors}
       />
 
       <CustomButton btnName="Enquire Now" isPending={isPending} />

@@ -72,6 +72,7 @@ const PopupForm = () => {
   });
 
   const handlePopupFormRequest = async (data: PopupFormInputs) => {
+    const searchParams = new URLSearchParams(window.location.search);
     const { areaCode, countryCode, mobileNumber, formattedPhoneNumber } =
       getPhoneDetails(data.phone_number);
     const name = data.fullName.split(" ");
@@ -83,16 +84,21 @@ const PopupForm = () => {
       familyName: familyName,
       mobilePhone: mobileNumber,
       email: data.email,
-      remarks: data.comments + " / " + campaignUTMURL,
+      remarks: data.comments + " / " + (campaignUTMURL || ""),
       bedroom: String(calculatedFormPayload.bedroom["studio" as RoomType]),
       budget: "",
       budget2: "",
-      campaignSource: campaignSource,
-      campaignMedium: campaignUTM,
+      campaignMedium: campaignUTM ,
       compaignSource: campaignSource,
-      compaignMedium: campaignUTM,
       mobileAreaCode: areaCode,
       mobileCountryCode: countryCode,
+    
+      // ✅ Normalize UTMs (convert null → undefined)
+      utm_source: searchParams?.get("utm_source") || undefined,
+      utm_medium: searchParams?.get("utm_medium") || undefined,
+      utm_campaign: searchParams?.get("utm_campaign") || undefined,
+      utm_content: searchParams?.get("utm_content") || undefined,
+      utm_term: searchParams?.get("utm_term") || undefined,
     };
 
     // console.log(

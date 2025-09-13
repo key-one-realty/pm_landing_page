@@ -12,6 +12,10 @@ export type PopupFormInputs = {
   phone_number: string;
   property_type: string;
   comments: string;
+
+  utmCampaignName?: string;
+  utmContent?: string;
+  utmTerm?: string;
 };
 
 export interface ContactInsertRequest {
@@ -51,8 +55,6 @@ export interface ContactInsertRequest {
   budget2: string;
   requirementCountryID: string;
   existingClient: string;
-  campaignSource: string | null;
-  campaignMedium: string | null;
   compaignSource: string | null;
   compaignMedium: string | null;
   company: string;
@@ -63,6 +65,10 @@ export interface ContactInsertRequest {
   activityTypeId: string;
   activitySubject: string;
   activityRemarks: string;
+
+  utmCampaignName?: string;
+  utmContent?: string;
+  utmTerm?: string;
 }
 
 export type ContactFormInputs = {
@@ -71,4 +77,8 @@ export type ContactFormInputs = {
   phone_number: string;
   property_type: string;
   message: string;
+
+  utmCampaignName?: string;
+  utmContent?: string;
+  utmTerm?: string;
 };
